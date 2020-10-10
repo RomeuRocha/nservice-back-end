@@ -32,9 +32,20 @@ public class ServiceService {
 		return repo.save(obj);
 	}
 	
+	public Service update(Service obj) {
+		Service newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+		
+	}
+	
 	public Service fromDto(ServiceDTO serviDTO) {
 		return new Service(serviDTO.getId(), serviDTO.getDescription(), serviDTO.getValue());
 	}
 	
+	private void updateData(Service newObj, Service obj) {
+		newObj.setDescription(obj.getDescription());
+		newObj.setValue(obj.getValue());
+	}
 	
 }
