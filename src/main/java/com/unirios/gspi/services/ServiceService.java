@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.unirios.gspi.dto.ServiceDTO;
 import com.unirios.gspi.entities.Service;
 import com.unirios.gspi.repositories.ServiceRepository;
+import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
 @org.springframework.stereotype.Service
@@ -37,6 +39,16 @@ public class ServiceService {
 		updateData(newObj, obj);
 		return repo.save(newObj);
 		
+	}
+	
+	public void delete(Long id) {
+		findById(id);//ou existe, ou irá gerar exception
+		try {
+			repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir um serviço que possui relação com Ordem de serviço");
+		}
 	}
 	
 	public Service fromDto(ServiceDTO serviDTO) {
