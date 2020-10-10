@@ -27,8 +27,14 @@ public class ServiceService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Service.class.getName()));	
 	}
 	
+	public Service insert(Service obj) {
+		obj.setId(null);//garantir o insert, pois se tiver id, ele faz update
+		return repo.save(obj);
+	}
+	
 	public Service fromDto(ServiceDTO serviDTO) {
 		return new Service(serviDTO.getId(), serviDTO.getDescription(), serviDTO.getValue());
 	}
+	
 	
 }
