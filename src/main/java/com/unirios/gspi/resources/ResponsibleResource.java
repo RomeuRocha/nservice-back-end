@@ -15,34 +15,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.unirios.gspi.dto.SubjectDTO;
-import com.unirios.gspi.entities.Subject;
-import com.unirios.gspi.services.SubjectService;
+import com.unirios.gspi.dto.ResponsibleDTO;
+import com.unirios.gspi.entities.Responsible;
+import com.unirios.gspi.services.ResponsibleService;
 
 @RestController
-@RequestMapping(value = "/subject")
-public class SubjectResouce {
-
+@RequestMapping(value = "/responsible")
+public class ResponsibleResource {
+	
 	@Autowired
-	private SubjectService service;
+	private ResponsibleService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<SubjectDTO>> findAll() {
-		List<Subject> list = service.findAll();
-		List<SubjectDTO> listDto = list.stream().map(obj -> new SubjectDTO(obj)).collect(Collectors.toList());  
+	public ResponseEntity<List<ResponsibleDTO>> findAll() {
+		List<Responsible> list = service.findAll();
+		List<ResponsibleDTO> listDto = list.stream().map(obj -> new ResponsibleDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<SubjectDTO> findById(@PathVariable Long id) {
-		Subject obj = service.findById(id);
-		SubjectDTO objDTO = new SubjectDTO(obj);
+	public ResponseEntity<ResponsibleDTO> findById(@PathVariable Long id) {
+		Responsible obj = service.findById(id);
+		ResponsibleDTO objDTO = new ResponsibleDTO(obj);
 		return ResponseEntity.ok().body(objDTO);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody SubjectDTO objDto) {
-		Subject obj = service.fromDto(objDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody ResponsibleDTO objDto) {
+		Responsible obj = service.fromDto(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -50,8 +50,8 @@ public class SubjectResouce {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody SubjectDTO objDto, @PathVariable Long id) {
-		Subject obj = service.fromDto(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody ResponsibleDTO objDto, @PathVariable Long id) {
+		Responsible obj = service.fromDto(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -63,6 +63,5 @@ public class SubjectResouce {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
 	
 }

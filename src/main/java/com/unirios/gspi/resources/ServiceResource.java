@@ -24,7 +24,7 @@ import com.unirios.gspi.services.ServiceService;
 public class ServiceResource {
 	
 	@Autowired
-	ServiceService service;
+	private ServiceService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ServiceDTO>> findAll() {

@@ -7,20 +7,26 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.unirios.gspi.entities.Responsible;
 import com.unirios.gspi.entities.Service;
 import com.unirios.gspi.entities.Subject;
+import com.unirios.gspi.entities.Enuns.Departamento;
+import com.unirios.gspi.repositories.ResponsibleRepository;
 import com.unirios.gspi.repositories.ServiceRepository;
 import com.unirios.gspi.repositories.SubjectRepository;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner{
+public class Instantiation implements CommandLineRunner{
 
 	@Autowired
 	private ServiceRepository serviceRepository;
 	
 	@Autowired
 	private SubjectRepository subjectRepository;
+	
+	@Autowired
+	private ResponsibleRepository responsibleRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -37,6 +43,12 @@ public class TestConfig implements CommandLineRunner{
 		Subject sub3 = new Subject(null, "Sem conexão");
 		
 		subjectRepository.saveAll(Arrays.asList(sub1,sub2,sub3));
+		
+		Responsible resp1 = new Responsible(null, "João Felipe da Silva", "joão@teste.com", "0354444", "Técnico em redes", Departamento.SUPORTE, "joao_silva", "password");
+		Responsible resp2 = new Responsible(null, "Kowalski", "kowalski@teste.com", "04151321", "Técnico em redes", Departamento.SUPORTE, "relatorio", "capitão");
+		Responsible resp3 = new Responsible(null, "Tobirama Senju", "anti_uchiha@teste.com", "0354444", "Atendente", Departamento.ATENDIMENTO, "tobirama", "death_uchiha");
+		
+		responsibleRepository.saveAll(Arrays.asList(resp1,resp2,resp3));
 
 	}
 

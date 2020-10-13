@@ -47,7 +47,7 @@ public class SubjectService {
 			repo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um serviço que possui relação com Ordem de serviço");
+			throw new DataIntegrityException("Não é possível excluir um Assunto que possui relação com Ordem de serviço");
 		}
 	}
 	
