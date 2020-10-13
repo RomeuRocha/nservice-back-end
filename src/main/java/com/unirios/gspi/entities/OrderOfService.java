@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.unirios.gspi.entities.Enuns.Status;
@@ -22,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "Servico")
+@Table(name = "Ordem_de_servico")
 public class OrderOfService implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -36,9 +39,13 @@ public class OrderOfService implements Serializable{
 	private List<Service> services = new ArrayList<Service>();
 
 	@Getter @Setter
+	@OneToOne
+	@JoinColumn(name = "funcionario_id")
 	private Collaborator collaborator;
 	
 	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = "assunto_id")
 	private Subject subject;
 	
 	@Getter @Setter
