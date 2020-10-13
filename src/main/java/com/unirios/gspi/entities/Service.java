@@ -1,11 +1,14 @@
 package com.unirios.gspi.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
+@NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
 @Table(name = "Servico")
@@ -35,5 +38,18 @@ public class Service implements Serializable{
 	
 	@Getter @Setter
 	private Float value;
+	
+	@Getter @Setter
+	@OneToMany(mappedBy = "id.service")
+	private Set<OrderServiceItem> orderServiceItems = new HashSet<OrderServiceItem>();
+
+	public Service(Long id, String description, Float value) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.value = value;
+	}
+	
+	
 	
 }

@@ -3,12 +3,19 @@ package com.unirios.gspi.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.unirios.gspi.entities.Enuns.Status;
@@ -22,7 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "Servico")
+@Table(name = "Ordem_de_servico")
 public class OrderOfService implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -32,13 +39,18 @@ public class OrderOfService implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Getter
-	private List<Service> services = new ArrayList<Service>();
+	@Getter @Setter
+	@OneToMany(mappedBy = "id.orderService")
+	private Set<OrderServiceItem> orderServiceItem = new HashSet<OrderServiceItem>();
 
 	@Getter @Setter
+	@OneToOne
+	@JoinColumn(name = "funcionario_id")
 	private Collaborator collaborator;
 	
 	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = "assunto_id")
 	private Subject subject;
 	
 	@Getter @Setter
@@ -71,10 +83,5 @@ public class OrderOfService implements Serializable{
 	public void setSituation(Status status) {
 		situation = status.getCod();
 	}
-	
-	public void setService(Service service) {
-		services.add(service);
-	}
-	
 
 }
