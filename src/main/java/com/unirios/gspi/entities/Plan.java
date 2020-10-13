@@ -17,8 +17,8 @@ import lombok.Setter;
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "Roteador")
-public class Roteador implements Serializable{
+@Table(name = "Plano")
+public class Plan implements Serializable{
 	
 	/**
 	 * 
@@ -31,18 +31,13 @@ public class Roteador implements Serializable{
 	private Long id;
 	
 	@Getter @Setter
-	private String name;
-	@Getter @Setter
-	private String mac;
-	@Getter @Setter
-	private String ip;
-	@Getter @Setter
-	private String mask;
-	@Getter @Setter
-	private String user;
-	@Getter @Setter
-	private String password;
+	private String descricao;
 	
+	@Getter @Setter
+	private Float valorMensal;
+	
+	@Getter @Setter
+	private String nome;
 	
 	
 }
