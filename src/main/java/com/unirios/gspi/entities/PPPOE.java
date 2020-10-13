@@ -17,8 +17,8 @@ import lombok.Setter;
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "PPOOE")
-public class PPOOE implements Serializable{
+@Table(name = "PPPOE")
+public class PPPOE implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -29,10 +29,10 @@ public class PPOOE implements Serializable{
 	private Long id;
 	
 	@Getter @Setter
-	private String password;
+	private String senha;
 	
 	@Getter @Setter
-	private String name;
+	private String nome;
 	
 	
 }
