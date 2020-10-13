@@ -12,9 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+<<<<<<< HEAD
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+=======
+import javax.persistence.ManyToOne;
+>>>>>>> 54a5f12640e9a1c8c29b7162fed999a2882b6c1c
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
