@@ -7,11 +7,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.unirios.gspi.entities.Responsible;
+import com.unirios.gspi.entities.Collaborator;
 import com.unirios.gspi.entities.Service;
 import com.unirios.gspi.entities.Subject;
 import com.unirios.gspi.entities.Enuns.Departamento;
-import com.unirios.gspi.repositories.ResponsibleRepository;
+import com.unirios.gspi.repositories.CollaboratorRepository;
 import com.unirios.gspi.repositories.ServiceRepository;
 import com.unirios.gspi.repositories.SubjectRepository;
 
@@ -26,7 +26,7 @@ public class Instantiation implements CommandLineRunner{
 	private SubjectRepository subjectRepository;
 	
 	@Autowired
-	private ResponsibleRepository responsibleRepository;
+	private CollaboratorRepository responsibleRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -44,9 +44,9 @@ public class Instantiation implements CommandLineRunner{
 		
 		subjectRepository.saveAll(Arrays.asList(sub1,sub2,sub3));
 		
-		Responsible resp1 = new Responsible(null, "João Felipe da Silva", "joão@teste.com", "0354444", "Técnico em redes", Departamento.SUPORTE, "joao_silva", "password");
-		Responsible resp2 = new Responsible(null, "Kowalski", "kowalski@teste.com", "04151321", "Técnico em redes", Departamento.SUPORTE, "relatorio", "capitão");
-		Responsible resp3 = new Responsible(null, "Tobirama Senju", "anti_uchiha@teste.com", "0354444", "Atendente", Departamento.ATENDIMENTO, "tobirama", "death_uchiha");
+		Collaborator resp1 = new Collaborator(null, "João Felipe da Silva", "joão@teste.com", "0354444", "Técnico em redes", Departamento.SUPPORT, "joao_silva", "password");
+		Collaborator resp2 = new Collaborator(null, "Kowalski", "kowalski@teste.com", "04151321", "Técnico em redes", Departamento.ADIMINISTRATION, "relatorio", "capitão");
+		Collaborator resp3 = new Collaborator(null, "Tobirama Senju", "anti_uchiha@teste.com", "0354444", "Atendente", Departamento.ATTENDANCE, "tobirama", "death_uchiha");
 		
 		responsibleRepository.saveAll(Arrays.asList(resp1,resp2,resp3));
 

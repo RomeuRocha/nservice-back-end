@@ -15,34 +15,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.unirios.gspi.dto.ResponsibleDTO;
-import com.unirios.gspi.entities.Responsible;
-import com.unirios.gspi.services.ResponsibleService;
+import com.unirios.gspi.dto.CollaboratorDTO;
+import com.unirios.gspi.entities.Collaborator;
+import com.unirios.gspi.services.CollaboratorService;
 
 @RestController
 @RequestMapping(value = "/responsible")
-public class ResponsibleResource {
+public class CollaboratorResource {
 	
 	@Autowired
-	private ResponsibleService service;
+	private CollaboratorService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ResponsibleDTO>> findAll() {
-		List<Responsible> list = service.findAll();
-		List<ResponsibleDTO> listDto = list.stream().map(obj -> new ResponsibleDTO(obj)).collect(Collectors.toList());  
+	public ResponseEntity<List<CollaboratorDTO>> findAll() {
+		List<Collaborator> list = service.findAll();
+		List<CollaboratorDTO> listDto = list.stream().map(obj -> new CollaboratorDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<ResponsibleDTO> findById(@PathVariable Long id) {
-		Responsible obj = service.findById(id);
-		ResponsibleDTO objDTO = new ResponsibleDTO(obj);
+	public ResponseEntity<CollaboratorDTO> findById(@PathVariable Long id) {
+		Collaborator obj = service.findById(id);
+		CollaboratorDTO objDTO = new CollaboratorDTO(obj);
 		return ResponseEntity.ok().body(objDTO);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ResponsibleDTO objDto) {
-		Responsible obj = service.fromDto(objDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody CollaboratorDTO objDto) {
+		Collaborator obj = service.fromDto(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -50,8 +50,8 @@ public class ResponsibleResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ResponsibleDTO objDto, @PathVariable Long id) {
-		Responsible obj = service.fromDto(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody CollaboratorDTO objDto, @PathVariable Long id) {
+		Collaborator obj = service.fromDto(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

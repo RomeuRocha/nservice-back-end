@@ -1,15 +1,15 @@
 package com.unirios.gspi.entities.Enuns;
 
-public enum Departamento {
+public enum Status {
 	
-	ADIMINISTRATION(1, "Administraçao"),
-	ATTENDANCE(2, "Atendimento"),
-	SUPPORT(3,"Suporte");
+	SCHEDULED(1, "Agendado"),
+	CONCLUDED(2, "Concluído"),
+	CANCELED(3,"Cancelado");
 	
 	private int cod;
 	private String descricao;
 	
-	private Departamento (int cod, String descricao) {
+	private Status (int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
@@ -22,13 +22,13 @@ public enum Departamento {
 		return descricao;
 	}
 	
-	public static Departamento toEnum(Integer cod) {
+	public static Status toEnum(Integer cod) {
 		
 		if (cod == null) {
 			return null;
 		}
 		
-		for (Departamento x : Departamento.values()) {
+		for (Status x : Status.values()) {
 			if (cod.equals(x.getCod())) {
 				return x;
 			}

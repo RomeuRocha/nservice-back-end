@@ -7,36 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.unirios.gspi.dto.ResponsibleDTO;
-import com.unirios.gspi.entities.Responsible;
-import com.unirios.gspi.repositories.ResponsibleRepository;
+import com.unirios.gspi.dto.CollaboratorDTO;
+import com.unirios.gspi.entities.Collaborator;
+import com.unirios.gspi.repositories.CollaboratorRepository;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ResponsibleService {
+public class CollaboratorService {
 	
 
 	@Autowired
-	private ResponsibleRepository repo;
+	private CollaboratorRepository repo;
 	
-	public List<Responsible> findAll(){
+	public List<Collaborator> findAll(){
 		return repo.findAll();
 	}
 	
-	public Responsible findById(Long id) {
-		Optional<Responsible> obj = repo.findById(id);
+	public Collaborator findById(Long id) {
+		Optional<Collaborator> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Responsible.class.getName()));	
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Collaborator.class.getName()));	
 	}
 	
-	public Responsible insert(Responsible obj) {
+	public Collaborator insert(Collaborator obj) {
 		obj.setId(null);//garantir o insert, pois se tiver id, ele faz update
 		return repo.save(obj);
 	}
 	
-	public Responsible update(Responsible obj) {
-		Responsible newObj = findById(obj.getId());
+	public Collaborator update(Collaborator obj) {
+		Collaborator newObj = findById(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 		
@@ -52,11 +52,11 @@ public class ResponsibleService {
 		}
 	}
 	
-	public Responsible fromDto(ResponsibleDTO responsibleDTO) {
-		return new Responsible(responsibleDTO.getId(), responsibleDTO.getName(), responsibleDTO.getEmail(), responsibleDTO.getWhatsApp(), responsibleDTO.getCargo(), responsibleDTO.getDepartamento(), responsibleDTO.getLogin(), responsibleDTO.getSenha());
+	public Collaborator fromDto(CollaboratorDTO responsibleDTO) {
+		return new Collaborator(responsibleDTO.getId(), responsibleDTO.getName(), responsibleDTO.getEmail(), responsibleDTO.getWhatsApp(), responsibleDTO.getCargo(), responsibleDTO.getDepartamento(), responsibleDTO.getLogin(), responsibleDTO.getSenha());
 	}
 	
-	private void updateData(Responsible newObj, Responsible obj) {
+	private void updateData(Collaborator newObj, Collaborator obj) {
 		newObj.setName(obj.getName());
 		newObj.setCargo(obj.getCargo());
 		newObj.setDepartamento(obj.getDepartamento());

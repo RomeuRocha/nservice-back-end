@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.unirios.gspi.entities.Responsible;
+import com.unirios.gspi.entities.Collaborator;
 import com.unirios.gspi.entities.Enuns.Departamento;
 
 import lombok.Getter;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 
 
-public class ResponsibleDTO {
+public class CollaboratorDTO {
 
 	private Long id;
 	
@@ -46,7 +46,7 @@ public class ResponsibleDTO {
 	@Length(min=5, max=20, message="O tamanho deve ser entre 5 e 20 caracteres")
 	private String senha;
 	
-	public ResponsibleDTO(Responsible respon) {
+	public CollaboratorDTO(Collaborator respon) {
 		id = respon.getId();
 		name = respon.getName();
 		email = respon.getEmail();
