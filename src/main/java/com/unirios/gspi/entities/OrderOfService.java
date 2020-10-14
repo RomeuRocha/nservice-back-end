@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.unirios.gspi.entities.Enuns.Status;
 
 import lombok.EqualsAndHashCode;
@@ -47,16 +48,24 @@ public class OrderOfService implements Serializable{
 	
 	@Getter @Setter
 	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+	
+	@Getter @Setter
+	@ManyToOne
 	@JoinColumn(name = "assunto_id")
 	private Subject subject;
 	
 	@Getter @Setter
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant saveMoment;//momento salvo;//deverá ser feito em trigger
 	
 	@Getter @Setter
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant dateSchedule;//data e hora do agendamento
 	
 	@Getter @Setter
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant attendance;//data e hora do atendimento
 	
 	private Integer situation;

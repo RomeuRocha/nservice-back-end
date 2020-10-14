@@ -92,7 +92,14 @@ public class Instantiation implements CommandLineRunner{
 		Cliente c3 = new ClienteJuridico(null, "UniRios", "321159", "45- 1213123", "1234564\0001", "UNIRIOS ME", "121a45\0", "103.03213.1");
 		Cliente c4 = new ClienteJuridico(null, "Acer", "888888", "0800-1213123", "987451\0001", "ACER ME", "456165\0", "459231");
 	
+		
+		
 		clienteRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
+		
+		os1.setCliente(c1);
+		os2.setCliente(c2);
+		os3.setCliente(c3);
+		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3));
 		
 	}
 

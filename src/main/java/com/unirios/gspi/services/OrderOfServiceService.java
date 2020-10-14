@@ -93,6 +93,7 @@ public class OrderOfServiceService {
 		newObj.setSaveMoment(obj.getSaveMoment());
 		newObj.setSituation(obj.getSituation());
 		newObj.setSubject(obj.getSubject());	
+		newObj.setCliente(obj.getCliente());
 	}
 	
 	public Page<OrderOfService> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
