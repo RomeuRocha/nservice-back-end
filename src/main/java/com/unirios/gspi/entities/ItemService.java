@@ -15,24 +15,23 @@ import lombok.Setter;
 @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-public class OrderServiceItem implements Serializable {
+public class ItemService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonIgnore
 	@Getter @Setter
 	@EmbeddedId
-	private OrderServiceItemPK id = new OrderServiceItemPK();
+	private ItemServicePK id = new ItemServicePK();
 	
 	@Getter @Setter
 	private Float value;
 	
-	public OrderServiceItem(Service service, OrderOfService orderService, Float value) {
+	public ItemService(Service service, OrderOfService orderService, Float value) {
 		
 		this.id.setOrderService(orderService);
 		this.id.setService(service);
 		this.value = value;
-		
-		
+			
 	}
 	
 }

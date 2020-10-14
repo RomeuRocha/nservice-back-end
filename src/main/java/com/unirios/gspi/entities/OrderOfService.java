@@ -2,9 +2,7 @@ package com.unirios.gspi.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -12,13 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-<<<<<<< HEAD
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-=======
-import javax.persistence.ManyToOne;
->>>>>>> 54a5f12640e9a1c8c29b7162fed999a2882b6c1c
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -43,9 +36,9 @@ public class OrderOfService implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Getter @Setter
+	@Getter
 	@OneToMany(mappedBy = "id.orderService")
-	private Set<OrderServiceItem> orderServiceItem = new HashSet<OrderServiceItem>();
+	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
 	@Getter @Setter
 	@OneToOne
@@ -88,4 +81,8 @@ public class OrderOfService implements Serializable{
 		situation = status.getCod();
 	}
 
+	public void setItemService(ItemService itemService) {
+		servicesItens.add(itemService);
+	}
+	
 }

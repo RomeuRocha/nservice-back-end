@@ -3,9 +3,9 @@ package com.unirios.gspi.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.unirios.gspi.entities.Router;
+import com.unirios.gspi.entities.OrderOfService;
 
-
-public interface RouterRepository extends JpaRepository<Router, Long>{
+@Repository
+public interface OrderOfServiceRepository extends JpaRepository<OrderOfService, Long>{
 
 }

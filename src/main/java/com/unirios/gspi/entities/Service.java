@@ -41,7 +41,7 @@ public class Service implements Serializable{
 	
 	@Getter @Setter
 	@OneToMany(mappedBy = "id.service")
-	private Set<OrderServiceItem> orderServiceItems = new HashSet<OrderServiceItem>();
+	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
 	public Service(Long id, String description, Float value) {
 		super();
