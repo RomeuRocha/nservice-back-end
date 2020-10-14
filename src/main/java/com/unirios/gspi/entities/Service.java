@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -39,6 +41,7 @@ public class Service implements Serializable{
 	@Getter @Setter
 	private Float value;
 	
+	@JsonIgnore
 	@Getter @Setter
 	@OneToMany(mappedBy = "id.service")
 	private Set<ItemService> servicesItens = new HashSet<ItemService>();

@@ -34,4 +34,22 @@ public class ItemService implements Serializable {
 			
 	}
 	
+	
+	public Service getService() {
+		return id.getService();
+	}
+	
+	public void setService(Service service) {
+		id.setService(service);
+	}
+	
+	@JsonIgnore
+	public OrderOfService getOrderOfService() {
+		return id.getOrderService();
+	}
+	
+	public void setOrderOfService(OrderOfService os) {
+		id.setOrderService(os);
+	}
+	
 }

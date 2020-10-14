@@ -70,12 +70,10 @@ public class Instantiation implements CommandLineRunner{
 		ItemService osItem2 = new ItemService(s2, os2, 10f);
 		ItemService osItem3 = new ItemService(s3, os3, 100f);
 		
-		
-		
-		
-		os1.setItemService(osItem1);
-		os2.setItemService(osItem2);
-		os3.setItemService(osItem3);
+	
+		os1.AddItemService(osItem1);
+		os2.AddItemService(osItem2);
+		os3.AddItemService(osItem3);
 		
 		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3));
 		

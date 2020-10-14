@@ -36,7 +36,7 @@ public class OrderOfService implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Getter
+	@Getter @Setter
 	@OneToMany(mappedBy = "id.orderService")
 	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
@@ -81,7 +81,7 @@ public class OrderOfService implements Serializable{
 		situation = status.getCod();
 	}
 
-	public void setItemService(ItemService itemService) {
+	public void AddItemService(ItemService itemService) {
 		servicesItens.add(itemService);
 	}
 	

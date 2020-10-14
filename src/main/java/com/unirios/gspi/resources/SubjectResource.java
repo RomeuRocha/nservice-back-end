@@ -21,7 +21,7 @@ import com.unirios.gspi.services.SubjectService;
 
 @RestController
 @RequestMapping(value = "/subject")
-public class SubjectResouce {
+public class SubjectResource {
 
 	@Autowired
 	private SubjectService service;
