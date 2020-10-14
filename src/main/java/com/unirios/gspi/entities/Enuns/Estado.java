@@ -1,6 +1,6 @@
 package com.unirios.gspi.entities.Enuns;
 
-public enum States {
+public enum Estado {
 	
 	AC(1, "Acre"),
 	AL(2, "Alagoas"),
@@ -33,7 +33,7 @@ public enum States {
 	private int code;
 	private String nome;
 	
-	private States(int code, String nome) {
+	private Estado(int code, String nome) {
 		this.code = code;
 		this.nome = nome;
 	}
@@ -45,8 +45,8 @@ public enum States {
 		return nome;
 	}
 	
-	public static States valueOf(int code) {
-		for(States value : States.values()) {
+	public static Estado valueOf(int code) {
+		for(Estado value : Estado.values()) {
 			if(value.getCode() == code) {
 				return value;
 			}
