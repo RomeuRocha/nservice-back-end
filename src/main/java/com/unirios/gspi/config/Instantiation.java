@@ -2,12 +2,16 @@ package com.unirios.gspi.config;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.unirios.gspi.entities.Cliente;
+import com.unirios.gspi.entities.ClienteFisico;
+import com.unirios.gspi.entities.ClienteJuridico;
 import com.unirios.gspi.entities.Collaborator;
 import com.unirios.gspi.entities.OrderOfService;
 import com.unirios.gspi.entities.ItemService;
@@ -15,6 +19,7 @@ import com.unirios.gspi.entities.Service;
 import com.unirios.gspi.entities.Subject;
 import com.unirios.gspi.entities.Enuns.Departamento;
 import com.unirios.gspi.entities.Enuns.Status;
+import com.unirios.gspi.repositories.ClienteRepository;
 import com.unirios.gspi.repositories.CollaboratorRepository;
 import com.unirios.gspi.repositories.OrderOfServiceRepository;
 import com.unirios.gspi.repositories.ItemServiceRepository;
@@ -39,6 +44,9 @@ public class Instantiation implements CommandLineRunner{
 	
 	@Autowired
 	private ItemServiceRepository itemServiceRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -78,6 +86,13 @@ public class Instantiation implements CommandLineRunner{
 		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3));
 		
 		itemServiceRepository.saveAll(Arrays.asList(osItem1,osItem2,osItem3));
+		
+		Cliente c1 = new ClienteFisico(null,"Maria silva","1236540","000000","000515151",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
+		Cliente c2 = new ClienteFisico(null,"Joana Costa","654987","111111","000515151",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
+		Cliente c3 = new ClienteJuridico(null, "UniRios", "321159", "45- 1213123", "1234564\0001", "UNIRIOS ME", "121a45\0", "103.03213.1");
+		Cliente c4 = new ClienteJuridico(null, "Acer", "888888", "0800-1213123", "987451\0001", "ACER ME", "456165\0", "459231");
+	
+		clienteRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
 		
 	}
 
