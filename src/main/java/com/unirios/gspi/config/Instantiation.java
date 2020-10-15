@@ -12,41 +12,41 @@ import org.springframework.context.annotation.Profile;
 import com.unirios.gspi.entities.Cliente;
 import com.unirios.gspi.entities.ClienteFisico;
 import com.unirios.gspi.entities.ClienteJuridico;
-import com.unirios.gspi.entities.Collaborator;
+import com.unirios.gspi.entities.Funcionario;
 import com.unirios.gspi.entities.OrderOfService;
 import com.unirios.gspi.entities.ItemService;
 import com.unirios.gspi.entities.Service;
 import com.unirios.gspi.entities.Subject;
 import com.unirios.gspi.entities.Enuns.Departamento;
 import com.unirios.gspi.entities.Enuns.Status;
-import com.unirios.gspi.repositories.ClienteRepository;
-import com.unirios.gspi.repositories.CollaboratorRepository;
-import com.unirios.gspi.repositories.OrderOfServiceRepository;
-import com.unirios.gspi.repositories.ItemServiceRepository;
-import com.unirios.gspi.repositories.ServiceRepository;
-import com.unirios.gspi.repositories.SubjectRepository;
+import com.unirios.gspi.repositorios.RepositorioCliente;
+import com.unirios.gspi.repositorios.RepositorioFuncionario;
+import com.unirios.gspi.repositorios.RepositorioItemServico;
+import com.unirios.gspi.repositorios.RepositorioOrdemServico;
+import com.unirios.gspi.repositorios.RepositorioServico;
+import com.unirios.gspi.repositorios.RepositorioAssunto;
 
 @Configuration
 @Profile("test")
 public class Instantiation implements CommandLineRunner{
 
 	@Autowired
-	private ServiceRepository serviceRepository;
+	private RepositorioServico serviceRepository;
 	
 	@Autowired
-	private SubjectRepository subjectRepository;
+	private RepositorioAssunto subjectRepository;
 	
 	@Autowired
-	private CollaboratorRepository responsibleRepository;
+	private RepositorioFuncionario responsibleRepository;
 	
 	@Autowired
-	private OrderOfServiceRepository orderOfServiceRepository;
+	private RepositorioOrdemServico orderOfServiceRepository;
 	
 	@Autowired
-	private ItemServiceRepository itemServiceRepository;
+	private RepositorioItemServico itemServiceRepository;
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private RepositorioCliente clienteRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -64,9 +64,9 @@ public class Instantiation implements CommandLineRunner{
 		
 		subjectRepository.saveAll(Arrays.asList(sub1,sub2,sub3));
 		
-		Collaborator resp1 = new Collaborator(null, "João Felipe da Silva", "joão@teste.com", "0354444", "Técnico em redes", Departamento.SUPPORT, "joao_silva", "password");
-		Collaborator resp2 = new Collaborator(null, "Kowalski", "kowalski@teste.com", "04151321", "Técnico em redes", Departamento.ADIMINISTRATION, "relatorio", "capitão");
-		Collaborator resp3 = new Collaborator(null, "Tobirama Senju", "anti_uchiha@teste.com", "0354444", "Atendente", Departamento.ATTENDANCE, "tobirama", "death_uchiha");
+		Funcionario resp1 = new Funcionario(null, "João Felipe da Silva", "joão@teste.com", "0354444", "Técnico em redes", Departamento.SUPPORT, "joao_silva", "password");
+		Funcionario resp2 = new Funcionario(null, "Kowalski", "kowalski@teste.com", "04151321", "Técnico em redes", Departamento.ADIMINISTRATION, "relatorio", "capitão");
+		Funcionario resp3 = new Funcionario(null, "Tobirama Senju", "anti_uchiha@teste.com", "0354444", "Atendente", Departamento.ATTENDANCE, "tobirama", "death_uchiha");
 		
 		responsibleRepository.saveAll(Arrays.asList(resp1,resp2,resp3));
 		

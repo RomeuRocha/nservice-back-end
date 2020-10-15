@@ -1,4 +1,4 @@
-package com.unirios.gspi.repositories;
+package com.unirios.gspi.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.unirios.gspi.entities.Subject;
 
 @Repository
-public interface SubjectRepository extends JpaRepository<Subject, Long>{
+public interface RepositorioAssunto extends JpaRepository<Subject, Long>{
 
 }
 

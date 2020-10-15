@@ -1,4 +1,4 @@
-package com.unirios.gspi.services;
+package com.unirios.gspi.Servicos;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.SubjectDTO;
 import com.unirios.gspi.entities.Subject;
-import com.unirios.gspi.repositories.SubjectRepository;
+import com.unirios.gspi.repositorios.RepositorioAssunto;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class SubjectService {
+public class ServicoAssunto {
 
 	@Autowired
-	private SubjectRepository repo;
+	private RepositorioAssunto repo;
 	
 	public List<Subject> findAll(){
 		return repo.findAll();

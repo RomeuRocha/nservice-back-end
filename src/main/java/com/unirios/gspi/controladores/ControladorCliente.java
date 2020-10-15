@@ -1,4 +1,4 @@
-package com.unirios.gspi.resources;
+package com.unirios.gspi.controladores;
 
 import java.net.URI;
 import java.util.List;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.unirios.gspi.Servicos.ServicoCliente;
 import com.unirios.gspi.entities.Cliente;
-import com.unirios.gspi.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/client")
-public class ClienteResource {
+@RequestMapping(value = "/cliente")
+public class ControladorCliente {
 	
 	@Autowired
-	private ClienteService service;
+	private ServicoCliente service;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Cliente>> findAll() {

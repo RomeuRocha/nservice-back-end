@@ -1,4 +1,4 @@
-package com.unirios.gspi.resources;
+package com.unirios.gspi.controladores;
 
 import java.net.URI;
 import java.util.List;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.unirios.gspi.Servicos.ServicoOrdemServico;
 import com.unirios.gspi.entities.OrderOfService;
-import com.unirios.gspi.services.OrderOfServiceService;
 
 @RestController
 @RequestMapping(value = "/os")
-public class OrderOfServiceResource {
+public class ControladorOrdemServico {
 
 	@Autowired
-	private OrderOfServiceService service;
+	private ServicoOrdemServico service;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<OrderOfService>> findAll() {

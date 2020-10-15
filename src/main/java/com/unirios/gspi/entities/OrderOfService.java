@@ -44,7 +44,7 @@ public class OrderOfService implements Serializable{
 	@Getter @Setter
 	@OneToOne
 	@JoinColumn(name = "funcionario_id")
-	private Collaborator collaborator;
+	private Funcionario collaborator;
 	
 	@Getter @Setter
 	@ManyToOne
@@ -70,7 +70,7 @@ public class OrderOfService implements Serializable{
 	
 	private Integer situation;
 
-	public OrderOfService(Long id, Collaborator collaborator, Subject subject,
+	public OrderOfService(Long id, Funcionario collaborator, Subject subject,
 			Instant saveMoment, Instant dateSchedule, Instant attendance, Status situation) {
 		super();
 		this.id = id;

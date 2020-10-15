@@ -1,4 +1,4 @@
-package com.unirios.gspi.repositories;
+package com.unirios.gspi.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.unirios.gspi.entities.ItemService;
 
 @Repository
-public interface ItemServiceRepository extends JpaRepository<ItemService, Long>{
+public interface RepositorioItemServico extends JpaRepository<ItemService, Long>{
 
 }

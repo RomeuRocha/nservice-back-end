@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.unirios.gspi.entities.Collaborator;
+import com.unirios.gspi.entities.Funcionario;
 import com.unirios.gspi.entities.Enuns.Departamento;
 
 import lombok.Getter;
@@ -17,13 +17,13 @@ import lombok.Setter;
 @Setter
 
 
-public class CollaboratorDTO {
+public class FuncionarioDTO {
 
 	private Long id;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
-	private String name;
+	private String nome;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Email(message="Email inválido")
@@ -46,9 +46,9 @@ public class CollaboratorDTO {
 	@Length(min=5, max=20, message="O tamanho deve ser entre 5 e 20 caracteres")
 	private String senha;
 	
-	public CollaboratorDTO(Collaborator respon) {
+	public FuncionarioDTO(Funcionario respon) {
 		id = respon.getId();
-		name = respon.getName();
+		nome = respon.getNome();
 		email = respon.getEmail();
 		whatsApp = respon.getWhatsApp();
 		cargo = respon.getCargo();

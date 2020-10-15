@@ -1,4 +1,4 @@
-package com.unirios.gspi.services;
+package com.unirios.gspi.Servicos;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,23 +12,23 @@ import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.entities.ItemService;
 import com.unirios.gspi.entities.OrderOfService;
-import com.unirios.gspi.repositories.ItemServiceRepository;
-import com.unirios.gspi.repositories.OrderOfServiceRepository;
-import com.unirios.gspi.repositories.ServiceRepository;
+import com.unirios.gspi.repositorios.RepositorioItemServico;
+import com.unirios.gspi.repositorios.RepositorioOrdemServico;
+import com.unirios.gspi.repositorios.RepositorioServico;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class OrderOfServiceService {
+public class ServicoOrdemServico {
 	
 	@Autowired
-	private OrderOfServiceRepository repo;
+	private RepositorioOrdemServico repo;
 	
 	@Autowired
-	private ItemServiceRepository itemRepo;
+	private RepositorioItemServico itemRepo;
 	
 	@Autowired
-	private ServiceRepository serviceRepository;
+	private RepositorioServico serviceRepository;
 	
 	public List<OrderOfService> findAll(){
 		return repo.findAll();

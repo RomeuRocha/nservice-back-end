@@ -1,4 +1,4 @@
-package com.unirios.gspi.repositories;
+package com.unirios.gspi.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.unirios.gspi.entities.OrderOfService;
 
 @Repository
-public interface OrderOfServiceRepository extends JpaRepository<OrderOfService, Long>{
+public interface RepositorioOrdemServico extends JpaRepository<OrderOfService, Long>{
 
 }

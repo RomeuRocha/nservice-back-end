@@ -1,4 +1,4 @@
-package com.unirios.gspi.services;
+package com.unirios.gspi.Servicos;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 import com.unirios.gspi.entities.Cliente;
 import com.unirios.gspi.entities.ClienteFisico;
 import com.unirios.gspi.entities.ClienteJuridico;
-import com.unirios.gspi.repositories.ClienteRepository;
+import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ClienteService {
+public class ServicoCliente {
 
 	@Autowired
-	private ClienteRepository repo;
+	private RepositorioCliente repo;
 
 	public List<Cliente> findAll() {
 		return repo.findAll();

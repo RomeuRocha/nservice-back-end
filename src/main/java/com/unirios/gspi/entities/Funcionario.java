@@ -20,7 +20,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Funcionario")
-public class Collaborator implements Serializable{
+public class Funcionario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -30,7 +30,7 @@ public class Collaborator implements Serializable{
 	private Long id;
 	
 	@Getter @Setter
-	private String name;
+	private String nome;
 	
 	@Getter @Setter
 	private String email;
@@ -49,11 +49,11 @@ public class Collaborator implements Serializable{
 	@Getter @Setter
 	private String senha;
 
-	public Collaborator(Long id, String name, String email, String whatsApp, String cargo, Departamento departamento,
+	public Funcionario(Long id, String nome, String email, String whatsApp, String cargo, Departamento departamento,
 			String login, String senha) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 		this.email = email;
 		this.whatsApp = whatsApp;
 		this.cargo = cargo;

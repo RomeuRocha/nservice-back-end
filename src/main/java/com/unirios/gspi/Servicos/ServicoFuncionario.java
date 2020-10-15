@@ -1,4 +1,4 @@
-package com.unirios.gspi.services;
+package com.unirios.gspi.Servicos;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,36 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.unirios.gspi.dto.CollaboratorDTO;
-import com.unirios.gspi.entities.Collaborator;
-import com.unirios.gspi.repositories.CollaboratorRepository;
+import com.unirios.gspi.dto.FuncionarioDTO;
+import com.unirios.gspi.entities.Funcionario;
+import com.unirios.gspi.repositorios.RepositorioFuncionario;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class CollaboratorService {
+public class ServicoFuncionario {
 	
 
 	@Autowired
-	private CollaboratorRepository repo;
+	private RepositorioFuncionario repo;
 	
-	public List<Collaborator> findAll(){
+	public List<Funcionario> findAll(){
 		return repo.findAll();
 	}
 	
-	public Collaborator findById(Long id) {
-		Optional<Collaborator> obj = repo.findById(id);
+	public Funcionario findById(Long id) {
+		Optional<Funcionario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Collaborator.class.getName()));	
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));	
 	}
 	
-	public Collaborator insert(Collaborator obj) {
+	public Funcionario insert(Funcionario obj) {
 		obj.setId(null);//garantir o insert, pois se tiver id, ele faz update
 		return repo.save(obj);
 	}
 	
-	public Collaborator update(Collaborator obj) {
-		Collaborator newObj = findById(obj.getId());
+	public Funcionario update(Funcionario obj) {
+		Funcionario newObj = findById(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 		
@@ -52,12 +52,12 @@ public class CollaboratorService {
 		}
 	}
 	
-	public Collaborator fromDto(CollaboratorDTO responsibleDTO) {
-		return new Collaborator(responsibleDTO.getId(), responsibleDTO.getName(), responsibleDTO.getEmail(), responsibleDTO.getWhatsApp(), responsibleDTO.getCargo(), responsibleDTO.getDepartamento(), responsibleDTO.getLogin(), responsibleDTO.getSenha());
+	public Funcionario fromDto(FuncionarioDTO objDTO) {
+		return new Funcionario(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getWhatsApp(), objDTO.getCargo(), objDTO.getDepartamento(), objDTO.getLogin(), objDTO.getSenha());
 	}
 	
-	private void updateData(Collaborator newObj, Collaborator obj) {
-		newObj.setName(obj.getName());
+	private void updateData(Funcionario newObj, Funcionario obj) {
+		newObj.setNome(obj.getNome());
 		newObj.setCargo(obj.getCargo());
 		newObj.setDepartamento(obj.getDepartamento());
 		newObj.setEmail(obj.getEmail());
