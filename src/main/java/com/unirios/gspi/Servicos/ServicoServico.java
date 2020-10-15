@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import com.unirios.gspi.dto.ServiceDTO;
+import com.unirios.gspi.dto.ServicoDTO;
 import com.unirios.gspi.entities.Service;
 import com.unirios.gspi.repositorios.RepositorioServico;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
@@ -51,7 +51,7 @@ public class ServicoServico {
 		}
 	}
 	
-	public Service fromDto(ServiceDTO serviDTO) {
+	public Service fromDto(ServicoDTO serviDTO) {
 		return new Service(serviDTO.getId(), serviDTO.getDescription(), serviDTO.getValue());
 	}
 	

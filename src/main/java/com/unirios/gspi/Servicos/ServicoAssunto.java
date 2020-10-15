@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.unirios.gspi.dto.SubjectDTO;
+import com.unirios.gspi.dto.AssuntoDTO;
 import com.unirios.gspi.entities.Subject;
 import com.unirios.gspi.repositorios.RepositorioAssunto;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
@@ -51,7 +51,7 @@ public class ServicoAssunto {
 		}
 	}
 	
-	public Subject fromDto(SubjectDTO subjectDTO) {
+	public Subject fromDto(AssuntoDTO subjectDTO) {
 		return new Subject(subjectDTO.getId(), subjectDTO.getDescription());
 	}
 	

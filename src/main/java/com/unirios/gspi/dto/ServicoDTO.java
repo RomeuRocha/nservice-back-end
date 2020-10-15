@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 
-public class ServiceDTO {
+public class ServicoDTO {
 	
 	private Long id;
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -23,7 +23,7 @@ public class ServiceDTO {
 	@NotNull(message = "Preenchimento obrigatório")
 	private Float value;
 	
-	public ServiceDTO(Service s) {
+	public ServicoDTO(Service s) {
 		id = s.getId();
 		description = s.getDescription();
 		value = s.getValue();

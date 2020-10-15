@@ -12,14 +12,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class SubjectDTO {
+public class AssuntoDTO {
 
 	private Long id;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String description;
 	
-	public SubjectDTO(Subject obj) {
+	public AssuntoDTO(Subject obj) {
 		id = obj.getId();
 		description = obj.getDescription();
 	}

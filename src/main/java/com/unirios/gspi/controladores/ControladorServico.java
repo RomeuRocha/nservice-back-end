@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoServico;
-import com.unirios.gspi.dto.ServiceDTO;
+import com.unirios.gspi.dto.ServicoDTO;
 import com.unirios.gspi.entities.Service;
 
 @RestController
@@ -27,21 +27,21 @@ public class ControladorServico {
 	private ServicoServico service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ServiceDTO>> findAll() {
+	public ResponseEntity<List<ServicoDTO>> findAll() {
 		List<Service> list = service.findAll();
-		List<ServiceDTO> listDto = list.stream().map(obj -> new ServiceDTO(obj)).collect(Collectors.toList());  
+		List<ServicoDTO> listDto = list.stream().map(obj -> new ServicoDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<ServiceDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<ServicoDTO> findById(@PathVariable Long id) {
 		Service obj = service.findById(id);
-		ServiceDTO objDTO = new ServiceDTO(obj);
+		ServicoDTO objDTO = new ServicoDTO(obj);
 		return ResponseEntity.ok().body(objDTO);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ServiceDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody ServicoDTO objDto) {
 		Service obj = service.fromDto(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -50,7 +50,7 @@ public class ControladorServico {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ServiceDTO objDto, @PathVariable Long id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody ServicoDTO objDto, @PathVariable Long id) {
 		Service obj = service.fromDto(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
