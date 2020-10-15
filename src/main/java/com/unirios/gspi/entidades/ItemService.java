@@ -26,7 +26,7 @@ public class ItemService implements Serializable {
 	@Getter @Setter
 	private Float value;
 	
-	public ItemService(Service service, OrdemServico orderService, Float value) {
+	public ItemService(Servico service, OrdemServico orderService, Float value) {
 		
 		this.id.setOrderService(orderService);
 		this.id.setService(service);
@@ -35,11 +35,11 @@ public class ItemService implements Serializable {
 	}
 	
 	
-	public Service getService() {
+	public Servico getService() {
 		return id.getService();
 	}
 	
-	public void setService(Service service) {
+	public void setService(Servico service) {
 		id.setService(service);
 	}
 	

@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Servico")
-public class Service implements Serializable{
+public class Servico implements Serializable{
 	
 	/**
 	 * 
@@ -46,7 +45,7 @@ public class Service implements Serializable{
 	@OneToMany(mappedBy = "id.service")
 	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
-	public Service(Long id, String description, Float value) {
+	public Servico(Long id, String description, Float value) {
 		super();
 		this.id = id;
 		this.description = description;

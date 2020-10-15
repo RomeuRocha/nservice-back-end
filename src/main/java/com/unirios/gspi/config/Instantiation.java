@@ -16,7 +16,7 @@ import com.unirios.gspi.entidades.ClienteJuridico;
 import com.unirios.gspi.entidades.Funcionario;
 import com.unirios.gspi.entidades.ItemService;
 import com.unirios.gspi.entidades.OrdemServico;
-import com.unirios.gspi.entidades.Service;
+import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.entities.Enuns.Departamento;
 import com.unirios.gspi.entities.Enuns.Status;
 import com.unirios.gspi.repositorios.RepositorioCliente;
@@ -51,9 +51,9 @@ public class Instantiation implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Service s1 = new Service(null,"Configuração do roteador",0.0f);
-		Service s2 = new Service(null,"Cripagem de cabos",10.0f);
-		Service s3 = new Service(null,"Instalação",100.0f);
+		Servico s1 = new Servico(null,"Configuração do roteador",0.0f);
+		Servico s2 = new Servico(null,"Cripagem de cabos",10.0f);
+		Servico s3 = new Servico(null,"Instalação",100.0f);
 
 		
 		serviceRepository.saveAll(Arrays.asList(s1,s2,s3));

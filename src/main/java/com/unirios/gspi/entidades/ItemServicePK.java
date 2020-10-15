@@ -6,7 +6,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +22,7 @@ public class ItemServicePK implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="service_id")
-	private Service service;
+	private Servico service;
 
 	@Override
 	public int hashCode() {
