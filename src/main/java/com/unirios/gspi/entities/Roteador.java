@@ -18,7 +18,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Roteador")
-public class Router implements Serializable{
+public class Roteador implements Serializable{
 	
 	/**
 	 * 

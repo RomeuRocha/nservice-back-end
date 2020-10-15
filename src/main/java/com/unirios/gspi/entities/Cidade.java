@@ -42,7 +42,7 @@ public class Cidade implements Serializable{
 	
 	@JsonIgnore
 	@Getter
-	@OneToMany
+	@OneToMany(mappedBy = "cidade")
 	private Set<Endereco> enderecos = new HashSet<>();
 	
 }
