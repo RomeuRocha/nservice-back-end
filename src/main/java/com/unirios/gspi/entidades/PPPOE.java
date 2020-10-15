@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
 
@@ -17,12 +17,10 @@ import lombok.Setter;
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "Plano")
-public class Plano implements Serializable{
+@Table(name = "PPPOE")
+public class PPPOE implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Getter @Setter
@@ -31,10 +29,7 @@ public class Plano implements Serializable{
 	private Long id;
 	
 	@Getter @Setter
-	private String descricao;
-	
-	@Getter @Setter
-	private Float valorMensal;
+	private String senha;
 	
 	@Getter @Setter
 	private String nome;

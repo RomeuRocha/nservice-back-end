@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -28,7 +28,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Ordem_de_servico")
-public class OrderOfService implements Serializable{
+public class OrdemServico implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -54,7 +54,7 @@ public class OrderOfService implements Serializable{
 	@Getter @Setter
 	@ManyToOne
 	@JoinColumn(name = "assunto_id")
-	private Subject subject;
+	private Assunto subject;
 	
 	@Getter @Setter
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
@@ -70,7 +70,7 @@ public class OrderOfService implements Serializable{
 	
 	private Integer situation;
 
-	public OrderOfService(Long id, Funcionario collaborator, Subject subject,
+	public OrdemServico(Long id, Funcionario collaborator, Assunto subject,
 			Instant saveMoment, Instant dateSchedule, Instant attendance, Status situation) {
 		super();
 		this.id = id;

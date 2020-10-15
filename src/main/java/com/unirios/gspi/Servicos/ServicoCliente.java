@@ -10,9 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.unirios.gspi.entities.Cliente;
-import com.unirios.gspi.entities.ClienteFisico;
-import com.unirios.gspi.entities.ClienteJuridico;
+import com.unirios.gspi.entidades.Cliente;
+import com.unirios.gspi.entidades.ClienteFisico;
+import com.unirios.gspi.entidades.ClienteJuridico;
 import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;

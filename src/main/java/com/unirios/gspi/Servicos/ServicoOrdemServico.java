@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.unirios.gspi.entities.ItemService;
-import com.unirios.gspi.entities.OrderOfService;
+import com.unirios.gspi.entidades.ItemService;
+import com.unirios.gspi.entidades.OrdemServico;
 import com.unirios.gspi.repositorios.RepositorioItemServico;
 import com.unirios.gspi.repositorios.RepositorioOrdemServico;
 import com.unirios.gspi.repositorios.RepositorioServico;
@@ -30,17 +30,17 @@ public class ServicoOrdemServico {
 	@Autowired
 	private RepositorioServico serviceRepository;
 	
-	public List<OrderOfService> findAll(){
+	public List<OrdemServico> findAll(){
 		return repo.findAll();
 	}
 	
-	public OrderOfService findById(Long id) {
-		Optional<OrderOfService> obj = repo.findById(id);
+	public OrdemServico findById(Long id) {
+		Optional<OrdemServico> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + OrderOfService.class.getName()));	
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + OrdemServico.class.getName()));	
 	}
 	
-	public OrderOfService insert(OrderOfService obj) {
+	public OrdemServico insert(OrdemServico obj) {
 		obj.setId(null);//garantir o insert, pois se tiver id, ele faz update
 		
 		obj = repo.save(obj);
@@ -55,8 +55,8 @@ public class ServicoOrdemServico {
 		return obj;
 	}
 	
-	public OrderOfService update(OrderOfService obj) {
-		OrderOfService newObj = findById(obj.getId());
+	public OrdemServico update(OrdemServico obj) {
+		OrdemServico newObj = findById(obj.getId());
 		
 		for(ItemService is: newObj.getServicesItens()) {
 			itemRepo.delete(is);//apaga os antigos itens
@@ -85,7 +85,7 @@ public class ServicoOrdemServico {
 		}
 	}
 	
-	private void updateData(OrderOfService newObj, OrderOfService obj) {
+	private void updateData(OrdemServico newObj, OrdemServico obj) {
 		newObj.setAttendance(obj.getAttendance());
 		newObj.setCollaborator(obj.getCollaborator());
 		newObj.setDateSchedule(obj.getDateSchedule());
@@ -96,7 +96,7 @@ public class ServicoOrdemServico {
 		newObj.setCliente(obj.getCliente());
 	}
 	
-	public Page<OrderOfService> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);

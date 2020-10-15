@@ -9,14 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.unirios.gspi.entities.Cliente;
-import com.unirios.gspi.entities.ClienteFisico;
-import com.unirios.gspi.entities.ClienteJuridico;
-import com.unirios.gspi.entities.Funcionario;
-import com.unirios.gspi.entities.OrderOfService;
-import com.unirios.gspi.entities.ItemService;
-import com.unirios.gspi.entities.Service;
-import com.unirios.gspi.entities.Subject;
+import com.unirios.gspi.entidades.Assunto;
+import com.unirios.gspi.entidades.Cliente;
+import com.unirios.gspi.entidades.ClienteFisico;
+import com.unirios.gspi.entidades.ClienteJuridico;
+import com.unirios.gspi.entidades.Funcionario;
+import com.unirios.gspi.entidades.ItemService;
+import com.unirios.gspi.entidades.OrdemServico;
+import com.unirios.gspi.entidades.Service;
 import com.unirios.gspi.entities.Enuns.Departamento;
 import com.unirios.gspi.entities.Enuns.Status;
 import com.unirios.gspi.repositorios.RepositorioCliente;
@@ -58,9 +58,9 @@ public class Instantiation implements CommandLineRunner{
 		
 		serviceRepository.saveAll(Arrays.asList(s1,s2,s3));
 		
-		Subject sub1 = new Subject(null, "Instalação de fibra");
-		Subject sub2 = new Subject(null, "Instalação cabo par trançado");
-		Subject sub3 = new Subject(null, "Sem conexão");
+		Assunto sub1 = new Assunto(null, "Instalação de fibra");
+		Assunto sub2 = new Assunto(null, "Instalação cabo par trançado");
+		Assunto sub3 = new Assunto(null, "Sem conexão");
 		
 		subjectRepository.saveAll(Arrays.asList(sub1,sub2,sub3));
 		
@@ -70,9 +70,9 @@ public class Instantiation implements CommandLineRunner{
 		
 		responsibleRepository.saveAll(Arrays.asList(resp1,resp2,resp3));
 		
-		OrderOfService os1 = new OrderOfService(null, resp1, sub1, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.SCHEDULED);
-		OrderOfService os2 = new OrderOfService(null, resp2, sub2, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUDED);
-		OrderOfService os3 = new OrderOfService(null, resp3, sub3, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELED);
+		OrdemServico os1 = new OrdemServico(null, resp1, sub1, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.SCHEDULED);
+		OrdemServico os2 = new OrdemServico(null, resp2, sub2, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUDED);
+		OrdemServico os3 = new OrdemServico(null, resp3, sub3, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELED);
 		
 		ItemService osItem1 = new ItemService(s1, os1, 0f);
 		ItemService osItem2 = new ItemService(s2, os2, 10f);

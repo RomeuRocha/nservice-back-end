@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import com.unirios.gspi.dto.ServicoDTO;
-import com.unirios.gspi.entities.Service;
+import com.unirios.gspi.entidades.Service;
 import com.unirios.gspi.repositorios.RepositorioServico;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;

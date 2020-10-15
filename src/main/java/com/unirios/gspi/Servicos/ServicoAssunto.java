@@ -8,7 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.AssuntoDTO;
-import com.unirios.gspi.entities.Subject;
+import com.unirios.gspi.entidades.Assunto;
 import com.unirios.gspi.repositorios.RepositorioAssunto;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
@@ -19,23 +19,23 @@ public class ServicoAssunto {
 	@Autowired
 	private RepositorioAssunto repo;
 	
-	public List<Subject> findAll(){
+	public List<Assunto> findAll(){
 		return repo.findAll();
 	}
 	
-	public Subject findById(Long id) {
-		Optional<Subject> obj = repo.findById(id);
+	public Assunto findById(Long id) {
+		Optional<Assunto> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Subject.class.getName()));	
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Assunto.class.getName()));	
 	}
 	
-	public Subject insert(Subject obj) {
+	public Assunto insert(Assunto obj) {
 		obj.setId(null);//garantir o insert, pois se tiver id, ele faz update
 		return repo.save(obj);
 	}
 	
-	public Subject update(Subject obj) {
-		Subject newObj = findById(obj.getId());
+	public Assunto update(Assunto obj) {
+		Assunto newObj = findById(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 		
@@ -51,11 +51,11 @@ public class ServicoAssunto {
 		}
 	}
 	
-	public Subject fromDto(AssuntoDTO subjectDTO) {
-		return new Subject(subjectDTO.getId(), subjectDTO.getDescription());
+	public Assunto fromDto(AssuntoDTO subjectDTO) {
+		return new Assunto(subjectDTO.getId(), subjectDTO.getDescription());
 	}
 	
-	private void updateData(Subject newObj, Subject obj) {
+	private void updateData(Assunto newObj, Assunto obj) {
 		newObj.setDescription(obj.getDescription());
 	}
 	

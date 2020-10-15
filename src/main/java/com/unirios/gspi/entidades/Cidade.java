@@ -1,8 +1,8 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,41 +12,37 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.unirios.gspi.entities.Enuns.Estado;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor @EqualsAndHashCode(of = "id")
+@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "Assunto")
-public class Subject implements Serializable{
+@Table(name = "Cidade")
+public class Cidade implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Getter @Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+		
+	@Getter @Setter
+	private String nome;
 	
 	@Getter @Setter
-	private String description;
+	private Estado estado;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "subject")
-	private List<OrderOfService> orderServices = new ArrayList<OrderOfService>();
-
-	public Subject(Long id, String description) {
-		super();
-		this.id = id;
-		this.description = description;
-	}
+	@Getter
+	@OneToMany(mappedBy = "cidade")
+	private Set<Endereco> enderecos = new HashSet<>();
 	
-	
-
 }

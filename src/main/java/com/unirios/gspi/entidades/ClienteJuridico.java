@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import javax.persistence.Entity;
 

@@ -3,7 +3,7 @@ package com.unirios.gspi.dto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.unirios.gspi.entities.Service;
+import com.unirios.gspi.entidades.Service;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

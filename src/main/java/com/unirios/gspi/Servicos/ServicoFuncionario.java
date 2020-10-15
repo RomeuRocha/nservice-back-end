@@ -8,7 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.FuncionarioDTO;
-import com.unirios.gspi.entities.Funcionario;
+import com.unirios.gspi.entidades.Funcionario;
 import com.unirios.gspi.repositorios.RepositorioFuncionario;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;

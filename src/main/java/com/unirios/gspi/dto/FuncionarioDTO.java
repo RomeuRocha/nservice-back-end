@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.unirios.gspi.entities.Funcionario;
+import com.unirios.gspi.entidades.Funcionario;
 import com.unirios.gspi.entities.Enuns.Departamento;
 
 import lombok.Getter;

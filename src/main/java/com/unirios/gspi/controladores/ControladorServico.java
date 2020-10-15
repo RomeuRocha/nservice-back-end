@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoServico;
 import com.unirios.gspi.dto.ServicoDTO;
-import com.unirios.gspi.entities.Service;
+import com.unirios.gspi.entidades.Service;
 
 @RestController
 @RequestMapping(value="/servico")

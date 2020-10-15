@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
 
@@ -26,7 +26,7 @@ public class ItemService implements Serializable {
 	@Getter @Setter
 	private Float value;
 	
-	public ItemService(Service service, OrderOfService orderService, Float value) {
+	public ItemService(Service service, OrdemServico orderService, Float value) {
 		
 		this.id.setOrderService(orderService);
 		this.id.setService(service);
@@ -44,11 +44,11 @@ public class ItemService implements Serializable {
 	}
 	
 	@JsonIgnore
-	public OrderOfService getOrderOfService() {
+	public OrdemServico getOrderOfService() {
 		return id.getOrderService();
 	}
 	
-	public void setOrderOfService(OrderOfService os) {
+	public void setOrderOfService(OrdemServico os) {
 		id.setOrderService(os);
 	}
 	

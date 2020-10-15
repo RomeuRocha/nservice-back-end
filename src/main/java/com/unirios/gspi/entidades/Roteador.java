@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
 
@@ -17,10 +17,12 @@ import lombok.Setter;
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "PPPOE")
-public class PPPOE implements Serializable{
+@Table(name = "Roteador")
+public class Roteador implements Serializable{
 	
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	@Getter @Setter
@@ -29,10 +31,18 @@ public class PPPOE implements Serializable{
 	private Long id;
 	
 	@Getter @Setter
+	private String nome;
+	@Getter @Setter
+	private String mac;
+	@Getter @Setter
+	private String ip;
+	@Getter @Setter
+	private String mascara;
+	@Getter @Setter
+	private String usuario;
+	@Getter @Setter
 	private String senha;
 	
-	@Getter @Setter
-	private String nome;
 	
 	
 }

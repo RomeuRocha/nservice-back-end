@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoOrdemServico;
-import com.unirios.gspi.entities.OrderOfService;
+import com.unirios.gspi.entidades.OrdemServico;
 
 @RestController
 @RequestMapping(value = "/os")
@@ -25,26 +25,26 @@ public class ControladorOrdemServico {
 	private ServicoOrdemServico service;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<OrderOfService>> findAll() {
-		List<OrderOfService> list = service.findAll();
+	public ResponseEntity<List<OrdemServico>> findAll() {
+		List<OrdemServico> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<OrderOfService> findById(@PathVariable Long id) {
-		OrderOfService obj = service.findById(id);
+	public ResponseEntity<OrdemServico> findById(@PathVariable Long id) {
+		OrdemServico obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody OrderOfService obj) {
+	public ResponseEntity<Void> insert(@RequestBody OrdemServico obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody OrderOfService obj, @PathVariable Long id) {
+	public ResponseEntity<Void> update(@RequestBody OrdemServico obj, @PathVariable Long id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -57,11 +57,11 @@ public class ControladorOrdemServico {
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ResponseEntity<Page<OrderOfService>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+	public ResponseEntity<Page<OrdemServico>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
-		Page<OrderOfService> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction);
 
 		return ResponseEntity.ok().body(list);
 

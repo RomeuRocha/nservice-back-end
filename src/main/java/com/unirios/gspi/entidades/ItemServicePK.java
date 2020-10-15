@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
 
@@ -19,7 +19,7 @@ public class ItemServicePK implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="ordemServico_id")
-	private OrderOfService orderService;
+	private OrdemServico orderService;
 	
 	@ManyToOne
 	@JoinColumn(name="service_id")

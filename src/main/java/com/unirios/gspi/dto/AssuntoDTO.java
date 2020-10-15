@@ -2,7 +2,7 @@ package com.unirios.gspi.dto;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.unirios.gspi.entities.Subject;
+import com.unirios.gspi.entidades.Assunto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class AssuntoDTO {
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String description;
 	
-	public AssuntoDTO(Subject obj) {
+	public AssuntoDTO(Assunto obj) {
 		id = obj.getId();
 		description = obj.getDescription();
 	}

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoFuncionario;
 import com.unirios.gspi.dto.FuncionarioDTO;
-import com.unirios.gspi.entities.Funcionario;
+import com.unirios.gspi.entidades.Funcionario;
 
 @RestController
 @RequestMapping(value = "/funcionario")

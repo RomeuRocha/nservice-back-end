@@ -1,4 +1,4 @@
-package com.unirios.gspi.entities;
+package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public abstract class Cliente implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
-	private List<OrderOfService> ordensDeServico = new ArrayList<OrderOfService>();
+	private List<OrdemServico> ordensDeServico = new ArrayList<OrdemServico>();
 
 	public Cliente(Long id, String nome, String whatsApp, String telefone) {
 		super();
