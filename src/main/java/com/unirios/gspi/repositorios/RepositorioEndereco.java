@@ -1,4 +1,4 @@
-package com.unirios.gspi.repositories;
+package com.unirios.gspi.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
