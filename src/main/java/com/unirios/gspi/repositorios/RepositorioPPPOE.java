@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.unirios.gspi.entities.PPPOE;
 
 
-public interface PPPOERepository extends JpaRepository<PPPOE, Long>{
+public interface RepositorioPPPOE extends JpaRepository<PPPOE, Long>{
 
 }
