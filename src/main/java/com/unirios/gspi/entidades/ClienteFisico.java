@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -21,7 +23,8 @@ import lombok.Setter;
 public class ClienteFisico extends Cliente{
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	@CPF
 	private String cpf;
 	
 	@JsonFormat(pattern="dd/MM/yyyy")

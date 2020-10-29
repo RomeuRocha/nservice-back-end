@@ -87,10 +87,10 @@ public class Instantiation implements CommandLineRunner{
 		
 		itemServiceRepository.saveAll(Arrays.asList(osItem1,osItem2,osItem3));
 		
-		Cliente c1 = new ClienteFisico(null,"Maria silva","1236540","000000","000515151",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
-		Cliente c2 = new ClienteFisico(null,"Joana Costa","654987","111111","000515151",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
-		Cliente c3 = new ClienteJuridico(null, "UniRios", "321159", "45- 1213123", "1234564\0001", "UNIRIOS ME", "121a45\0", "103.03213.1");
-		Cliente c4 = new ClienteJuridico(null, "Acer", "888888", "0800-1213123", "987451\0001", "ACER ME", "456165\0", "459231");
+		Cliente c1 = new ClienteFisico(null,"Maria silva","1236540","000000","786.355.400-42",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
+		Cliente c2 = new ClienteFisico(null,"Joana Costa","654987","111111","786.355.400-42",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
+		Cliente c3 = new ClienteJuridico(null, "UniRios", "321159", "45- 1213123", "67.739.155/0001-15", "UNIRIOS ME", "121a45\0", "103.03213.1");
+		Cliente c4 = new ClienteJuridico(null, "Acer", "888888", "0800-1213123", "67.739.155/0001-15", "ACER ME", "456165\0", "459231");
 	
 		
 		

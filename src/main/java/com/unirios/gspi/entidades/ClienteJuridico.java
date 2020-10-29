@@ -2,6 +2,8 @@ package com.unirios.gspi.entidades;
 
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import lombok.Getter;
@@ -18,6 +20,7 @@ public class ClienteJuridico extends Cliente{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@CNPJ
 	private String cnpj;
 	
 	private String razaoSocial;

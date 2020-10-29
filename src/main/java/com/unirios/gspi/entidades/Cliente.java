@@ -39,6 +39,8 @@ public abstract class Cliente implements Serializable{
 	
 	private String nome;
 	
+	private String email;
+	
 	private String whatsApp;
 	
 	private String telefone;
