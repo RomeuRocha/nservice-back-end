@@ -11,20 +11,18 @@ import org.springframework.context.annotation.Profile;
 
 import com.unirios.gspi.entidades.Assunto;
 import com.unirios.gspi.entidades.Cliente;
-import com.unirios.gspi.entidades.ClienteFisico;
-import com.unirios.gspi.entidades.ClienteJuridico;
 import com.unirios.gspi.entidades.Funcionario;
 import com.unirios.gspi.entidades.ItemService;
 import com.unirios.gspi.entidades.OrdemServico;
 import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.entities.Enuns.Departamento;
 import com.unirios.gspi.entities.Enuns.Status;
+import com.unirios.gspi.repositorios.RepositorioAssunto;
 import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.repositorios.RepositorioFuncionario;
 import com.unirios.gspi.repositorios.RepositorioItemServico;
 import com.unirios.gspi.repositorios.RepositorioOrdemServico;
 import com.unirios.gspi.repositorios.RepositorioServico;
-import com.unirios.gspi.repositorios.RepositorioAssunto;
 
 @Configuration
 @Profile("test")
@@ -87,11 +85,11 @@ public class Instantiation implements CommandLineRunner{
 		
 		itemServiceRepository.saveAll(Arrays.asList(osItem1,osItem2,osItem3));
 		
-		Cliente c1 = new ClienteFisico(null,"Maria silva","1236540","000000","786.355.400-42",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
-		Cliente c2 = new ClienteFisico(null,"Joana Costa","654987","111111","786.355.400-42",Date.from(Instant.parse("1995-04-14T19:53:07Z")));
-		Cliente c3 = new ClienteJuridico(null, "UniRios", "321159", "45- 1213123", "67.739.155/0001-15", "UNIRIOS ME", "121a45\0", "103.03213.1");
-		Cliente c4 = new ClienteJuridico(null, "Acer", "888888", "0800-1213123", "67.739.155/0001-15", "ACER ME", "456165\0", "459231");
-	
+		Cliente c1 = new Cliente(null, "José da Silva", "032323223", "5582936412222","jose@teste.com","786.355.400-42");
+		Cliente c2 = new Cliente(null, "Maria Ferreira", "032323223", "5582936412222","maria@teste.com","786.355.400-42");
+		Cliente c3 = new Cliente(null, "Ana Clara", "032323223", "5582936412222","ana@teste.com","786.355.400-42");
+		Cliente c4 = new Cliente(null, "Romeu Rocha", "032323223", "5582936412222","romeu@teste.com","786.355.400-42");
+		
 		
 		
 		clienteRepository.saveAll(Arrays.asList(c1,c2,c3,c4));

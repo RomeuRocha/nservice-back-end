@@ -11,8 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.entidades.Cliente;
-import com.unirios.gspi.entidades.ClienteFisico;
-import com.unirios.gspi.entidades.ClienteJuridico;
 import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
@@ -63,24 +61,12 @@ public class ServicoCliente {
 	}
 
 	private void updateData(Cliente newObj, Cliente obj) {
-		if (newObj instanceof ClienteFisico) {
-			ClienteFisico cf = (ClienteFisico) obj;
-			((ClienteFisico) newObj).setCpf(cf.getCpf());
-			((ClienteFisico) newObj).setDataNascimento(cf.getDataNascimento());
-			newObj.setNome(cf.getNome());
-			newObj.setTelefone(cf.getTelefone());
-			newObj.setWhatsApp(cf.getWhatsApp());
 
-		} else {
-			ClienteJuridico cj = (ClienteJuridico) obj;
-			((ClienteJuridico) newObj).setCnpj(cj.getCnpj());
-			((ClienteJuridico) newObj).setInscricaoEstadual(cj.getInscricaoEstadual());
-			((ClienteJuridico) newObj).setInscricaoMunicipal(cj.getInscricaoMunicipal());
-			((ClienteJuridico) newObj).setRazaoSocial(cj.getRazaoSocial());
-			((ClienteJuridico) newObj).setNome(cj.getNome());
-			((ClienteJuridico) newObj).setTelefone(cj.getTelefone());
-			((ClienteJuridico) newObj).setWhatsApp(cj.getWhatsApp());
+		newObj.setCpf(obj.getCpf());
+		newObj.setNome(obj.getNome());
+		newObj.setTelefone(obj.getTelefone());
+		newObj.setWhatsApp(obj.getWhatsApp());
+		newObj.setEmail(obj.getEmail());
 
-		}
 	}
 }

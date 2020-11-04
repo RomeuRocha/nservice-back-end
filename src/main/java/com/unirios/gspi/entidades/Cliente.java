@@ -27,9 +27,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
-public abstract class Cliente implements Serializable{
+public class Cliente implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -45,16 +43,20 @@ public abstract class Cliente implements Serializable{
 	
 	private String telefone;
 	
+	private String cpf;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<OrdemServico> ordensDeServico = new ArrayList<OrdemServico>();
 
-	public Cliente(Long id, String nome, String whatsApp, String telefone) {
+	public Cliente(Long id, String nome, String whatsApp, String telefone,String email, String cpf) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.whatsApp = whatsApp;
 		this.telefone = telefone;
+		this.cpf = cpf;
+		this.email = email;
 	}
 	
 	
