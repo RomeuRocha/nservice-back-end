@@ -31,7 +31,7 @@ public class ServicoOrdemServico {
 	private RepositorioServico serviceRepository;
 	
 	public List<OrdemServico> findAll(){
-		return repo.findAll();
+		return repo.listarTudo();
 	}
 	
 	public OrdemServico findById(Long id) {
