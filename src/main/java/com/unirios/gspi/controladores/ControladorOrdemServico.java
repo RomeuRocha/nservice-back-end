@@ -45,6 +45,7 @@ public class ControladorOrdemServico {
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody OrdemServicoDTO objDto) {
 		OrdemServico obj = service.fromDTO(objDto);
+		
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();

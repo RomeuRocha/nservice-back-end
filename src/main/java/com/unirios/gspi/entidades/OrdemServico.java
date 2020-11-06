@@ -73,11 +73,12 @@ public class OrdemServico implements Serializable{
 	
 	private Integer situation;
 
-	public OrdemServico(Long id, Funcionario collaborator, Assunto subject,
+	public OrdemServico(Long id, Funcionario collaborator,Cliente cliente, Assunto subject,
 			Instant saveMoment, Instant dateSchedule, Instant attendance, Status situation) {
 		super();
 		this.id = id;
 		this.collaborator = collaborator;
+		this.cliente = cliente;
 		this.subject = subject;
 		this.saveMoment = saveMoment;
 		this.dateSchedule = dateSchedule;

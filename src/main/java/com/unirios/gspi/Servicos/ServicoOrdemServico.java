@@ -1,5 +1,6 @@
 package com.unirios.gspi.Servicos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +12,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.OrdemServicoDTO;
+import com.unirios.gspi.dto.ServicoDTO;
 import com.unirios.gspi.entidades.Cliente;
 import com.unirios.gspi.entidades.ItemService;
 import com.unirios.gspi.entidades.OrdemServico;
+import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.repositorios.RepositorioItemServico;
 import com.unirios.gspi.repositorios.RepositorioOrdemServico;
 import com.unirios.gspi.repositorios.RepositorioServico;
@@ -106,8 +109,16 @@ public class ServicoOrdemServico {
 	}
 
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
-		return new OrdemServico(dto.getId(), dto.getFuncionario(), dto.getAssunto(), dto.getSaveMoment(),
+		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
+	
+		for(ServicoDTO servDTO : dto.getServicos()) {
+			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());
+			os.getServicesItens().add(new ItemService(s, os, s.getValue()));
+		}
+		
+		
+		return os;
 	}
 
 }
