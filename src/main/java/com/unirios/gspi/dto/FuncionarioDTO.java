@@ -1,5 +1,7 @@
 package com.unirios.gspi.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -17,7 +19,12 @@ import lombok.Setter;
 @Setter
 
 
-public class FuncionarioDTO {
+public class FuncionarioDTO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	

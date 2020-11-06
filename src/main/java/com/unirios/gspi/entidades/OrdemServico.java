@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unirios.gspi.entities.Enuns.Status;
 
 import lombok.EqualsAndHashCode;
@@ -37,8 +38,10 @@ public class OrdemServico implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Getter @Setter
-	@OneToMany(mappedBy = "id.orderService")
+	@JsonIgnore
+	@Getter 
+	@Setter
+	@OneToMany(mappedBy = "id")
 	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
 	@Getter @Setter

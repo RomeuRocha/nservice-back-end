@@ -11,10 +11,17 @@ import com.unirios.gspi.entidades.OrdemServico;
 @Repository
 public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Long>{
 	
-	@Query("SELECT obj FROM OrdemServico obj JOIN FETCH obj.cliente "
-			+ "JOIN FETCH obj.collaborator"
-			+ " JOIN FETCH obj.subject"
-			+ " JOIN FETCH obj.servicesItens")
-	List<OrdemServico> listarTudo();
-
+	@Query("SELECT obj FROM OrdemServico obj"
+			+ " INNER JOIN FETCH obj.servicesItens it"
+			+ " INNER JOIN FETCH it.service"
+			+ " INNER JOIN FETCH obj.cliente"
+			+ " INNER JOIN FETCH obj.collaborator"
+			+ " INNER JOIN FETCH obj.subject")
+	List<OrdemServico> findJoinOs();
+	
+	
+	@Query("SELECT obj FROM OrdemServico obj"
+			+ " INNER JOIN FETCH obj.servicesItens"
+			+ " WHERE obj IN :listaOs")
+	List<OrdemServico> findJoinOsParametro(List<OrdemServico> listaOs);
 }

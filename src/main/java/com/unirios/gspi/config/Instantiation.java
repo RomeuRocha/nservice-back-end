@@ -72,9 +72,9 @@ public class Instantiation implements CommandLineRunner{
 		OrdemServico os2 = new OrdemServico(null, resp2, sub2, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUDED);
 		OrdemServico os3 = new OrdemServico(null, resp3, sub3, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELED);
 		
-		OrdemServico os4 = new OrdemServico(null, resp1, sub1, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.SCHEDULED);
-		OrdemServico os5 = new OrdemServico(null, resp2, sub2, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUDED);
-		OrdemServico os6 = new OrdemServico(null, resp3, sub3, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELED);
+		//OrdemServico os4 = new OrdemServico(null, resp1, sub1, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.SCHEDULED);
+		//OrdemServico os5 = new OrdemServico(null, resp2, sub2, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUDED);
+		//OrdemServico os6 = new OrdemServico(null, resp3, sub3, Instant.parse("2020-10-13T19:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELED);
 		
 		ItemService osItem1 = new ItemService(s1, os1, 0f);
 		ItemService osItem2 = new ItemService(s2, os2, 10f);
@@ -85,7 +85,7 @@ public class Instantiation implements CommandLineRunner{
 		os2.AddItemService(osItem2);
 		os3.AddItemService(osItem3);
 		
-		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3,os4,os5,os6));
+		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3/*,os4,os5,os6*/));
 		
 		itemServiceRepository.saveAll(Arrays.asList(osItem1,osItem2,osItem3));
 		

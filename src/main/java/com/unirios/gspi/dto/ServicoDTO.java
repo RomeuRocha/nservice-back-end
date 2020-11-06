@@ -1,5 +1,7 @@
 package com.unirios.gspi.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +17,12 @@ import lombok.Setter;
 @NoArgsConstructor
 
 
-public class ServicoDTO {
+public class ServicoDTO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	@NotEmpty(message="Preenchimento obrigatório")

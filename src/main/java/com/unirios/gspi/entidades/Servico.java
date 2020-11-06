@@ -42,7 +42,7 @@ public class Servico implements Serializable{
 	
 	@JsonIgnore
 	@Getter @Setter
-	@OneToMany(mappedBy = "id.service")
+	@OneToMany(mappedBy = "id")
 	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
 	public Servico(Long id, String description, Float value) {

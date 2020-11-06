@@ -1,5 +1,7 @@
 package com.unirios.gspi.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotEmpty;
 
 import com.unirios.gspi.entidades.Assunto;
@@ -12,7 +14,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class AssuntoDTO {
+public class AssuntoDTO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	
