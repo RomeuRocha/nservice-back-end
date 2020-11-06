@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.OrdemServicoDTO;
+import com.unirios.gspi.entidades.Cliente;
 import com.unirios.gspi.entidades.ItemService;
 import com.unirios.gspi.entidades.OrdemServico;
 import com.unirios.gspi.repositorios.RepositorioItemServico;
@@ -32,7 +33,7 @@ public class ServicoOrdemServico {
 	private RepositorioServico serviceRepository;
 
 	public List<OrdemServico> findAll() {
-		return repo.findJoinOs();
+		return repo.findByServicesItens();
 	}
 
 	public OrdemServico findById(Long id) {

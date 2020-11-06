@@ -17,11 +17,6 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " INNER JOIN FETCH obj.cliente"
 			+ " INNER JOIN FETCH obj.collaborator"
 			+ " INNER JOIN FETCH obj.subject")
-	List<OrdemServico> findJoinOs();
+	List<OrdemServico> findByServicesItens();
 	
-	
-	@Query("SELECT obj FROM OrdemServico obj"
-			+ " INNER JOIN FETCH obj.servicesItens"
-			+ " WHERE obj IN :listaOs")
-	List<OrdemServico> findJoinOsParametro(List<OrdemServico> listaOs);
 }

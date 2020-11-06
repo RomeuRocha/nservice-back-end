@@ -70,11 +70,10 @@ public class ControladorOrdemServico {
 	public ResponseEntity<Page<OrdemServicoDTO>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
-			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+			@RequestParam(value = "orderBy", defaultValue = "saveMoment") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
 		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<OrdemServicoDTO> listDto = list.map(obj -> new OrdemServicoDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
-
 	}
 }
