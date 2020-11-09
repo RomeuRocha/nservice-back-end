@@ -1,6 +1,5 @@
 package com.unirios.gspi.Servicos;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.OrdemServicoDTO;
 import com.unirios.gspi.dto.ServicoDTO;
-import com.unirios.gspi.entidades.Cliente;
 import com.unirios.gspi.entidades.ItemService;
 import com.unirios.gspi.entidades.OrdemServico;
 import com.unirios.gspi.entidades.Servico;

@@ -41,20 +41,17 @@ public class Cliente implements Serializable{
 	
 	private String whatsApp;
 	
-	private String telefone;
-	
 	private String cpf;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<OrdemServico> ordensDeServico = new ArrayList<OrdemServico>();
 
-	public Cliente(Long id, String nome, String whatsApp, String telefone,String email, String cpf) {
+	public Cliente(Long id, String nome, String whatsApp,String email, String cpf) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.whatsApp = whatsApp;
-		this.telefone = telefone;
 		this.cpf = cpf;
 		this.email = email;
 	}
