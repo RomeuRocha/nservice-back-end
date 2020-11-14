@@ -1,8 +1,6 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -19,20 +17,25 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoCliente;
 import com.unirios.gspi.dto.ClienteDTO;
-import com.unirios.gspi.dto.OrdemServicoDTO;
 import com.unirios.gspi.entidades.Cliente;
 
 @RestController
-@RequestMapping(value = "/cliente")
+@RequestMapping(value="/cliente")
 public class ControladorCliente {
 	
 	@Autowired
 	private ServicoCliente service;
-
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ClienteDTO>> findAll() {
-		List<Cliente> list = service.findAll();
-		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());  
+	
+	
+	@RequestMapping( method = RequestMethod.GET)
+	public ResponseEntity<Page<ClienteDTO>> findPage(
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(value = "field", defaultValue = "") String field) {
+		Page<Cliente> list = service.findPage(page, linesPerPage, orderBy, direction,field);
+		Page<ClienteDTO> listDto = list.map(obj -> new ClienteDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
@@ -44,38 +47,45 @@ public class ControladorCliente {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto) {
+	public ResponseEntity<ClienteDTO> insert(@Valid @RequestBody ClienteDTO objDto) {
 		Cliente obj = service.fromDto(objDto);
 		obj = service.insert(obj);
+		ClienteDTO serviDTO = new ClienteDTO(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(serviDTO);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Long id) {
+	public ResponseEntity<ClienteDTO> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Long id) {
 		Cliente obj = service.fromDto(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
-		return ResponseEntity.noContent().build();
+		ClienteDTO servDTO = new ClienteDTO(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(servDTO);
 	}
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
+	public ResponseEntity<ClienteDTO> delete(@PathVariable Long id) {
+		Cliente s = service.delete(id);
+		ClienteDTO servDTO = new ClienteDTO(s);
+		return ResponseEntity.ok().body(servDTO);
 	}
 	
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ResponseEntity<Page<ClienteDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
-			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
-			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
-		Page<Cliente> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<ClienteDTO> listDTO = list.map(obj -> new ClienteDTO(obj));  
-		return ResponseEntity.ok().body(listDTO);
+	@RequestMapping(value="/many/{ids}", method=RequestMethod.DELETE)
+	public ResponseEntity<Long[]> delete(@PathVariable Long[] ids) {
+		
+		for(Long id: ids) {
+			service.delete(id);
+		}
+		Long[] vars = ids;
+		return ResponseEntity.ok().body(vars);
 	}
 	
 	
+	
+
 }

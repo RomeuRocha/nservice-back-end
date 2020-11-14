@@ -2,6 +2,7 @@ package com.unirios.gspi.Servicos;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -34,7 +35,7 @@ public class ServicoOrdemServico {
 	private RepositorioServico serviceRepository;
 
 	public List<OrdemServico> findAll() {
-		return repo.findByServicesItens();
+		return repo.findAll();
 	}
 
 	public OrdemServico findById(Long id) {
@@ -78,10 +79,11 @@ public class ServicoOrdemServico {
 		return newObj;
 	}
 
-	public void delete(Long id) {
-		findById(id);// ou existe, ou irá gerar exception
+	public OrdemServico delete(Long id) {
+		OrdemServico obj = findById(id);// ou existe, ou irá gerar exception
 		try {
 			repo.deleteById(id);
+			return obj;
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException(
 					"Não é possível excluir um funcionário que possui relação com Ordem de serviço");
@@ -98,24 +100,26 @@ public class ServicoOrdemServico {
 		newObj.setSubject(obj.getSubject());
 		newObj.setCliente(obj.getCliente());
 	}
-
-	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	
+	
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return repo.findAll(pageRequest);
+		
+		
+		repo.findByServicesItensJoin();
+		Page<OrdemServico> pages = repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
 
+		return pages;
 	}
 
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
 		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
-	
 		for(ServicoDTO servDTO : dto.getServicos()) {
 			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());
 			os.getServicesItens().add(new ItemService(s, os, s.getValue()));
 		}
-		
-		
 		return os;
 	}
 

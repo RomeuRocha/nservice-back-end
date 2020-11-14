@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.AssuntoDTO;
@@ -41,10 +44,11 @@ public class ServicoAssunto {
 		
 	}
 	
-	public void delete(Long id) {
-		findById(id);//ou existe, ou irá gerar exception
+	public Assunto delete(Long id) {
+		Assunto a = findById(id);//ou existe, ou irá gerar exception
 		try {
 			repo.deleteById(id);
+			return a;
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir um Assunto que possui relação com Ordem de serviço");
@@ -57,6 +61,15 @@ public class ServicoAssunto {
 	
 	private void updateData(Assunto newObj, Assunto obj) {
 		newObj.setDescription(obj.getDescription());
+	}
+	
+	public Page<Assunto> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
+
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
+		//return repo.findAll(pageRequest);
+
 	}
 	
 }

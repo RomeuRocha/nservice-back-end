@@ -5,10 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.FuncionarioDTO;
 import com.unirios.gspi.entidades.Funcionario;
+import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.repositorios.RepositorioFuncionario;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
@@ -42,10 +46,11 @@ public class ServicoFuncionario {
 		
 	}
 	
-	public void delete(Long id) {
-		findById(id);//ou existe, ou irá gerar exception
+	public Funcionario delete(Long id) {
+		Funcionario obj = findById(id);//ou existe, ou irá gerar exception
 		try {
 			repo.deleteById(id);
+			return obj;
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir um funcionário que possui relação com Ordem de serviço");
@@ -64,6 +69,15 @@ public class ServicoFuncionario {
 		newObj.setLogin(obj.getLogin());
 		newObj.setSenha(obj.getSenha());
 		newObj.setWhatsApp(obj.getWhatsApp());
+	}
+	
+	public Page<Funcionario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
+
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
+		//return repo.findAll(pageRequest);
+
 	}
 	
 }

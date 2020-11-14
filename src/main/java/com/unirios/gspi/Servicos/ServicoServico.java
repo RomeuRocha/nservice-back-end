@@ -5,8 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 
 import com.unirios.gspi.dto.ServicoDTO;
+import com.unirios.gspi.entidades.OrdemServico;
 import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.repositorios.RepositorioServico;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
@@ -41,14 +45,16 @@ public class ServicoServico {
 		
 	}
 	
-	public void delete(Long id) {
-		findById(id);//ou existe, ou irá gerar exception
+	public Servico delete(Long id) {
+		Servico s = findById(id);//ou existe, ou irá gerar exception
 		try {
 			repo.deleteById(id);
+			return s;
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir um serviço que possui relação com Ordem de serviço");
 		}
+		
 	}
 	
 	public Servico fromDto(ServicoDTO serviDTO) {
@@ -58,6 +64,15 @@ public class ServicoServico {
 	private void updateData(Servico newObj, Servico obj) {
 		newObj.setDescription(obj.getDescription());
 		newObj.setValue(obj.getValue());
+	}
+	
+	public Page<Servico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
+
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
+		//return repo.findAll(pageRequest);
+
 	}
 	
 }

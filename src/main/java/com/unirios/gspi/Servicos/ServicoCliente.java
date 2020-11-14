@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.ClienteDTO;
 import com.unirios.gspi.entidades.Cliente;
+import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
@@ -46,20 +47,23 @@ public class ServicoCliente {
 
 	}
 
-	public void delete(Long id) {
-		findById(id);// ou existe, ou irá gerar exception
+	public Cliente delete(Long id) {
+		Cliente obj =  findById(id);// ou existe, ou irá gerar exception
 		try {
 			repo.deleteById(id);
+			return obj;
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException(
 					"Não é possível excluir um Cliente que possui relação com Ordem de serviço");
 		}
 	}
 
-	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return repo.findAll(pageRequest);
+		
+		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
+		//return repo.findAll(pageRequest);
 
 	}
 

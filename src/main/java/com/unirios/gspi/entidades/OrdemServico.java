@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,14 +46,16 @@ public class OrdemServico implements Serializable{
 	private Set<ItemService> servicesItens = new HashSet<ItemService>();
 
 	@Getter @Setter
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario collaborator;
+	
 	
 	@Getter @Setter
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+	
 	
 	@Getter @Setter
 	@ManyToOne
@@ -83,7 +86,7 @@ public class OrdemServico implements Serializable{
 		this.saveMoment = saveMoment;
 		this.dateSchedule = dateSchedule;
 		this.attendance = attendance;
-		this.situation = situation.getCod();
+		this.situation = situation== null ? null: situation.getCod();
 	}
 	
 	public Status getSituation() {
