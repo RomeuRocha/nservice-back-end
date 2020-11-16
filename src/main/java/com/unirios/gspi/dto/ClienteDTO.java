@@ -1,8 +1,6 @@
 package com.unirios.gspi.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -11,9 +9,11 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.unirios.gspi.entidades.Cliente;
-import com.unirios.gspi.entidades.OrdemServico;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 
 @Data
 public class ClienteDTO implements Serializable{

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.ClienteDTO;
 import com.unirios.gspi.entidades.Cliente;
-import com.unirios.gspi.entidades.Servico;
 import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
@@ -63,8 +62,6 @@ public class ServicoCliente {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
 		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
-		//return repo.findAll(pageRequest);
-
 	}
 
 	private void updateData(Cliente newObj, Cliente obj) {
