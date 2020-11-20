@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +33,9 @@ public class ControladorOrdemServico {
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "field", defaultValue = "") String field) {
-		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,field);
+			@RequestParam(value = "cliente", defaultValue = "") String cliente,
+			@RequestParam(value = "assunto", defaultValue = "") String assunto) {
+		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto);
 		Page<OrdemServicoDTO> listDto = list.map(obj -> new OrdemServicoDTO(obj));  
 	
 		return ResponseEntity.ok().body(listDto);

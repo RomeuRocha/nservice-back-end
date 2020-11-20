@@ -101,13 +101,11 @@ public class ServicoOrdemServico {
 	}
 	
 	
-	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		
-		
 		repo.findByServicesItensJoin();
-		Page<OrdemServico> pages = repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
+		Page<OrdemServico> pages = repo.listarServicosPaginados(cliente.toLowerCase(),assunto.toLowerCase(),pageRequest);
 
 		return pages;
 	}

@@ -30,8 +30,9 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " JOIN FETCH obj.subject")
 	List<OrdemServico> findByServicesItensJoin();
 	
-	@Query("FROM OrdemServico obj WHERE LOWER(obj.cliente.nome) like %:field%")
-	public Page<OrdemServico> listarServicosPaginados(String field, Pageable  pageable );
+	@Query("FROM OrdemServico obj WHERE LOWER(obj.cliente.nome) like %:cliente%"
+			+ " AND LOWER(obj.subject.description) like %:assunto%")
+	public Page<OrdemServico> listarServicosPaginados(String cliente,String assunto, Pageable  pageable );
 	
 	
 }
