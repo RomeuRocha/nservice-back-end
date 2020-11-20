@@ -34,8 +34,9 @@ public class ControladorOrdemServico {
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
 			@RequestParam(value = "cliente", defaultValue = "") String cliente,
-			@RequestParam(value = "assunto", defaultValue = "") String assunto) {
-		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto);
+			@RequestParam(value = "assunto", defaultValue = "") String assunto,
+			@RequestParam(value = "situacao", defaultValue = "0") Integer situacao) {
+		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto,situacao);
 		Page<OrdemServicoDTO> listDto = list.map(obj -> new OrdemServicoDTO(obj));  
 	
 		return ResponseEntity.ok().body(listDto);

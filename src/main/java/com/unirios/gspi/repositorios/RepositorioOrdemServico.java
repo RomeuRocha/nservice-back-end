@@ -32,7 +32,14 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 	
 	@Query("FROM OrdemServico obj WHERE LOWER(obj.cliente.nome) like %:cliente%"
 			+ " AND LOWER(obj.subject.description) like %:assunto%")
-	public Page<OrdemServico> listarServicosPaginados(String cliente,String assunto, Pageable  pageable );
+			
+	public Page<OrdemServico> findOSByClienteAndAssunto(String cliente,String assunto, Pageable  pageable );
+	
+	@Query("FROM OrdemServico obj WHERE "
+			+ " LOWER(obj.cliente.nome) like %:cliente%"
+			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND obj.situation = :situacao")
+	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacao(String cliente,String assunto,Integer situacao, Pageable  pageable );
 	
 	
 }
