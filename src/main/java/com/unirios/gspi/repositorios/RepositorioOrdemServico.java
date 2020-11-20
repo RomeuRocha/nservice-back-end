@@ -1,5 +1,6 @@
 package com.unirios.gspi.repositorios;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -40,6 +41,23 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " AND LOWER(obj.subject.description) like %:assunto%"
 			+ " AND obj.situation = :situacao")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacao(String cliente,String assunto,Integer situacao, Pageable  pageable );
+	
+	@Query("FROM OrdemServico obj WHERE "
+			+ " LOWER(obj.cliente.nome) like %:cliente%"
+			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND obj.saveMoment >= :dataInicial"
+			+ " AND obj.saveMoment <= :dataFinal")
+	public Page<OrdemServico> findOSByClienteAndAssuntoAndDataInicial(String cliente,String assunto,Instant dataInicial,Instant dataFinal, Pageable  pageable );
+	
+	
+	
+	@Query("FROM OrdemServico obj WHERE "
+			+ " LOWER(obj.cliente.nome) like %:cliente%"
+			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND obj.situation = :situacao"
+			+ " AND obj.saveMoment >= :dataInicial"
+			+ " AND obj.saveMoment <= :dataFinal")
+	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataInicial(String cliente,String assunto,Integer situacao,Instant dataInicial,Instant dataFinal, Pageable  pageable );
 	
 	
 }

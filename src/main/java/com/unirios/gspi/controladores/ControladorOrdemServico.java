@@ -1,6 +1,10 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -35,10 +39,12 @@ public class ControladorOrdemServico {
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
 			@RequestParam(value = "cliente", defaultValue = "") String cliente,
 			@RequestParam(value = "assunto", defaultValue = "") String assunto,
-			@RequestParam(value = "situacao", defaultValue = "0") Integer situacao) {
-		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto,situacao);
+			@RequestParam(value = "situacao", defaultValue = "0") Integer situacao,
+			@RequestParam(value = "dataInicial", defaultValue = "") String dataInicial) {
+		
+		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto,situacao,dataInicial);
 		Page<OrdemServicoDTO> listDto = list.map(obj -> new OrdemServicoDTO(obj));  
-	
+		
 		return ResponseEntity.ok().body(listDto);
 	}
 	

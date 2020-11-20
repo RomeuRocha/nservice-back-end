@@ -1,5 +1,9 @@
 package com.unirios.gspi.Servicos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,13 +105,20 @@ public class ServicoOrdemServico {
 	}
 	
 	
-	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto,Integer situacao) {
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto,Integer situacao,String dataInicial) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		repo.findByServicesItensJoin();
 		Page<OrdemServico> pages = null;
-		if(situacao == 0) {
+		Instant dtInicial = convertInstantFromString(dataInicial);
+		
+		if(situacao == 0 && dtInicial == null) {
 			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),pageRequest);
+		}else if(situacao == 0 && dtInicial != null){
+			pages = repo.findOSByClienteAndAssuntoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,new Date().toInstant(),pageRequest);
+		}else if(situacao != 0 && dtInicial != null) {
+			
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,new Date().toInstant(),pageRequest);
 		}else {
 			pages = repo.findOSByClienteAndAssuntoAndSituacao(cliente.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
 		}
@@ -123,6 +134,19 @@ public class ServicoOrdemServico {
 			os.getServicesItens().add(new ItemService(s, os, s.getValue()));
 		}
 		return os;
+	}
+	
+	public Instant convertInstantFromString(String value) {
+        Instant instant = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date dte = sdf.parse(value);
+			instant = dte.toInstant();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return instant;
 	}
 
 }
