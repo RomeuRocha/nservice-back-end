@@ -49,8 +49,6 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndDataInicial(String cliente,String assunto,Instant dataInicial,Instant dataFinal, Pageable  pageable );
 	
-	
-	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
 			+ " AND LOWER(obj.subject.description) like %:assunto%"
@@ -58,6 +56,20 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " AND obj.saveMoment >= :dataInicial"
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataInicial(String cliente,String assunto,Integer situacao,Instant dataInicial,Instant dataFinal, Pageable  pageable );
+	
+	
+	@Query("FROM OrdemServico obj WHERE "
+			+ " LOWER(obj.cliente.nome) like %:cliente%"
+			+ " AND LOWER(obj.subject.description) like %:assunto%" 
+			+ " AND obj.saveMoment <= :dataFinal")
+	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataFinal(String cliente,String assunto,Instant dataFinal, Pageable  pageable );
+
+	@Query("FROM OrdemServico obj WHERE "
+			+ " LOWER(obj.cliente.nome) like %:cliente%"
+			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND obj.saveMoment >= :dataInicial"
+			+ " AND obj.saveMoment <= :dataFinal")
+	public Page<OrdemServico> findOSByClienteAndAssuntoAndDataInicialAndDataFinal(String cliente,String assunto,Instant dataInicial,Instant dataFinal, Pageable  pageable );
 	
 	
 }

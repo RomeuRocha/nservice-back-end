@@ -40,9 +40,10 @@ public class ControladorOrdemServico {
 			@RequestParam(value = "cliente", defaultValue = "") String cliente,
 			@RequestParam(value = "assunto", defaultValue = "") String assunto,
 			@RequestParam(value = "situacao", defaultValue = "0") Integer situacao,
-			@RequestParam(value = "dataInicial", defaultValue = "") String dataInicial) {
+			@RequestParam(value = "dataInicial", defaultValue = "") String dataInicial,
+			@RequestParam(value = "dataFinal", defaultValue = "") String dataFinal) {
 		
-		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto,situacao,dataInicial);
+		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto,situacao,dataInicial,dataFinal);
 		Page<OrdemServicoDTO> listDto = list.map(obj -> new OrdemServicoDTO(obj));  
 		
 		return ResponseEntity.ok().body(listDto);

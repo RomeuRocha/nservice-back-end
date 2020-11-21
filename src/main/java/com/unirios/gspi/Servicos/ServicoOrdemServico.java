@@ -105,19 +105,28 @@ public class ServicoOrdemServico {
 	}
 	
 	
-	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto,Integer situacao,String dataInicial) {
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto,Integer situacao,String dataInicial,String dataFinal) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		repo.findByServicesItensJoin();
 		Page<OrdemServico> pages = null;
 		Instant dtInicial = convertInstantFromString(dataInicial);
+		Instant dtFinal = convertInstantFromString(dataFinal);
 		
-		if(situacao == 0 && dtInicial == null) {
+		if(situacao == 0 && dtInicial == null && dtFinal == null) {
+			//filtro padrão (apenas por assunto e/ou cliente)
 			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),pageRequest);
-		}else if(situacao == 0 && dtInicial != null){
+		}else if(situacao == 0 && dtInicial == null && dtFinal != null) {
+			//filtro padrão + datafinal
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
+		}else if(situacao == 0 && dtFinal == null && dtInicial != null){
+			//filtro padrão + dataInicial 
 			pages = repo.findOSByClienteAndAssuntoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,new Date().toInstant(),pageRequest);
+		}else if(situacao == 0 && dtInicial != null && dtFinal != null) {
+			//filtro padrão + dataInicial + dataFinal
+			pages = repo.findOSByClienteAndAssuntoAndDataInicialAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,dtFinal,pageRequest);
 		}else if(situacao != 0 && dtInicial != null) {
-			
+			//filtro padrão  + situação + dataInicial
 			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,new Date().toInstant(),pageRequest);
 		}else {
 			pages = repo.findOSByClienteAndAssuntoAndSituacao(cliente.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
@@ -127,7 +136,7 @@ public class ServicoOrdemServico {
 	}
 
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
-		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
+		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment().toInstant(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
 		for(ServicoDTO servDTO : dto.getServicos()) {
 			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());
@@ -138,6 +147,9 @@ public class ServicoOrdemServico {
 	
 	public Instant convertInstantFromString(String value) {
         Instant instant = null;
+        if(value.equals("")) {
+        	return null;
+        }
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dte = sdf.parse(value);
