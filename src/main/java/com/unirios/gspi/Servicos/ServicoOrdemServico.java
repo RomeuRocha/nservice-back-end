@@ -114,8 +114,13 @@ public class ServicoOrdemServico {
 		Instant dtFinal = convertInstantFromString(dataFinal);
 		
 		if(situacao == 0 && dtInicial == null && dtFinal == null) {
+			Date now = new Date();
+			Instant datFinal =	now.toInstant();
+			now.setDate(1);
+			Instant inicial = now.toInstant();
+			
 			//filtro padrão (apenas por assunto e/ou cliente)
-			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),pageRequest);
+			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),inicial, datFinal,pageRequest);
 		}else if(situacao == 0 && dtInicial == null && dtFinal != null) {
 			//filtro padrão + datafinal
 			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
@@ -125,10 +130,18 @@ public class ServicoOrdemServico {
 		}else if(situacao == 0 && dtInicial != null && dtFinal != null) {
 			//filtro padrão + dataInicial + dataFinal
 			pages = repo.findOSByClienteAndAssuntoAndDataInicialAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,dtFinal,pageRequest);
-		}else if(situacao != 0 && dtInicial != null) {
+		}else if(situacao != 0 && dtFinal == null && dtInicial != null ) {
 			//filtro padrão  + situação + dataInicial
 			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,new Date().toInstant(),pageRequest);
-		}else {
+		}else if(situacao != 0 && dtFinal != null && dtInicial == null ) {
+			//filtro padrão + situação + dataFinal
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtFinal,pageRequest);
+
+		}else if(situacao != 0 && dtFinal != null && dtInicial != null) {
+			//filtro padrão + situação + dataInicial + dataFinal
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,dtFinal,pageRequest);
+		}
+		else {
 			pages = repo.findOSByClienteAndAssuntoAndSituacao(cliente.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
 		}
 		
