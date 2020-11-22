@@ -74,7 +74,7 @@ public class ServicoAdesao {
 	}
 	
 	public Adesao fromDto(AdesaoDTO subjectDTO) {
-		return new Adesao(subjectDTO.getId(), subjectDTO.getData(), subjectDTO.getValor(), subjectDTO.getPlano(), 
+		return new Adesao(subjectDTO.getId(), subjectDTO.getData().toInstant(), subjectDTO.getValor(), subjectDTO.getPlano(), 
 				subjectDTO.getCancelamento(), subjectDTO.getEndereco(), subjectDTO.getCliente());
 	}
 	

@@ -1,6 +1,8 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoEndereco;
+import com.unirios.gspi.dto.ClienteDTO;
 import com.unirios.gspi.dto.EnderecoDTO;
+import com.unirios.gspi.entidades.Cliente;
 import com.unirios.gspi.entidades.Endereco;
 
 @RestController
@@ -82,6 +86,18 @@ public class ControladorEndereco {
 		}
 		Long[] vars = ids;
 		return ResponseEntity.ok().body(vars);
+	}
+	
+	@RequestMapping(value="/many/{ids}", method=RequestMethod.GET)
+	public ResponseEntity<List<EnderecoDTO>> findMany(@PathVariable Long[] ids) {
+		List<EnderecoDTO> list = new ArrayList<EnderecoDTO>();
+		
+		for(Long id: ids) {
+			Endereco endereco = service.findById(id);
+			list.add(new EnderecoDTO(endereco));
+		}
+		
+		return ResponseEntity.ok().body(list);
 	}
 	
 	

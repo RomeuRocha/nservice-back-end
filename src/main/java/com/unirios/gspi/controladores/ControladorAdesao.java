@@ -1,6 +1,8 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -84,7 +86,17 @@ public class ControladorAdesao {
 		return ResponseEntity.ok().body(vars);
 	}
 	
-	
+	@RequestMapping(value="/many/{ids}", method=RequestMethod.GET)
+	public ResponseEntity<List<AdesaoDTO>> findMany(@PathVariable Long[] ids) {
+		List<AdesaoDTO> list = new ArrayList<AdesaoDTO>();
+		
+		for(Long id: ids) {
+			Adesao adesao = service.findById(id);
+			list.add(new AdesaoDTO(adesao));
+		}
+		
+		return ResponseEntity.ok().body(list);
+	}
 	
 	
 	

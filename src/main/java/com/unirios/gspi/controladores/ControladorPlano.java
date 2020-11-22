@@ -1,6 +1,8 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,7 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoPlano;
 import com.unirios.gspi.Servicos.ServicoPlano;
+import com.unirios.gspi.dto.AdesaoDTO;
 import com.unirios.gspi.dto.PlanoDTO;
+import com.unirios.gspi.entidades.Adesao;
 import com.unirios.gspi.entidades.Plano;
 import com.unirios.gspi.entidades.Plano;
 
@@ -84,6 +88,18 @@ public class ControladorPlano {
 		}
 		Long[] vars = ids;
 		return ResponseEntity.ok().body(vars);
+	}
+	
+	@RequestMapping(value="/many/{ids}", method=RequestMethod.GET)
+	public ResponseEntity<List<PlanoDTO>> findMany(@PathVariable Long[] ids) {
+		List<PlanoDTO> list = new ArrayList<PlanoDTO>();
+		
+		for(Long id: ids) {
+			Plano plano = service.findById(id);
+			list.add(new PlanoDTO(plano));
+		}
+		
+		return ResponseEntity.ok().body(list);
 	}
 	
 }

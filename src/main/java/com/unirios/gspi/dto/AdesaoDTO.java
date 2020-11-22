@@ -2,6 +2,7 @@ package com.unirios.gspi.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -27,8 +28,7 @@ public class AdesaoDTO implements Serializable{
 
 	private Long id;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
-	private Instant data;
+	private Date data;
 	
 	
 	private double valor;
@@ -46,7 +46,7 @@ public class AdesaoDTO implements Serializable{
 
 	public AdesaoDTO(Adesao obj) {
 		id = obj.getId();
-		data = obj.getData();
+		data = Date.from(obj.getData());
 		valor = obj.getValor();
 		plano = obj.getPlano();
 		cancelamento = obj.getCancelamento();
