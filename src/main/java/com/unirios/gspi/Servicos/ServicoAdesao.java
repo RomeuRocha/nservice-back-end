@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.unirios.gspi.dto.AdesaoDTO;
 import com.unirios.gspi.entidades.Adesao;
+import com.unirios.gspi.entidades.Endereco;
 import com.unirios.gspi.repositorios.RepositorioAdesao;
+import com.unirios.gspi.repositorios.RepositorioEndereco;
 import com.unirios.gspi.services.exceptions.DataIntegrityException;
 import com.unirios.gspi.services.exceptions.ObjectNotFoundException;
 
@@ -21,6 +23,9 @@ public class ServicoAdesao {
 
 	@Autowired
 	private RepositorioAdesao repo;
+	
+	@Autowired
+	private ServicoEndereco serviceEndereco;
 	
 	public List<Adesao> findAll(){
 		return repo.findAll();
@@ -39,11 +44,24 @@ public class ServicoAdesao {
 	
 	public Adesao update(Adesao obj) {
 		Adesao newObj = findById(obj.getId());
+		Endereco newEnd = serviceEndereco.findById(obj.getEndereco().getId());
+		
+		updateDataEndereco(newEnd,obj.getEndereco());
+		serviceEndereco.update(newEnd);
+		
 		updateData(newObj, obj);
 		return repo.save(newObj);
 		
 	}
 	
+	private void updateDataEndereco(Endereco newEnd, Endereco endereco) {
+		newEnd.setBairro(endereco.getBairro());
+		newEnd.setCep(endereco.getCep());
+		newEnd.setCidade(endereco.getCidade());
+		newEnd.setNumero(endereco.getNumero());
+		newEnd.setRua(endereco.getRua());
+	}
+
 	public Adesao delete(Long id) {
 		Adesao a = findById(id);//ou existe, ou irá gerar exception
 		try {
