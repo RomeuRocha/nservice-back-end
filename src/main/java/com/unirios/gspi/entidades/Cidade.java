@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
+@NoArgsConstructor @EqualsAndHashCode(of = "id")
 
 @Entity
 @Table(name = "Cidade")
@@ -44,5 +44,13 @@ public class Cidade implements Serializable{
 	@Getter
 	@OneToMany(mappedBy = "cidade")
 	private Set<Endereco> enderecos = new HashSet<>();
+
+	public Cidade(Long id, String nome, Estado estado) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.estado = estado;
+	}
+	
 	
 }

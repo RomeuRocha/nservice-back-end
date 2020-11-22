@@ -3,6 +3,7 @@ package com.unirios.gspi.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.unirios.gspi.entidades.Plano;
 
@@ -26,7 +27,7 @@ public class PlanoDTO implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String descricao;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
+	@NotNull(message="Preenchimento obrigatório")
 	private Float valorMensal;
 	
 	@NotEmpty(message="Preenchimento obrigatório")

@@ -36,7 +36,7 @@ public class EnderecoDTO implements Serializable{
 	
 	private String cep;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
+	
 	private Cidade cidade;
 
 

@@ -30,7 +30,7 @@ public class AdesaoDTO implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant data;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
+	
 	private double valor;
 	
 
