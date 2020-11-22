@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,10 +33,15 @@ public class ControladorOrdemServico {
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "field", defaultValue = "") String field) {
-		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,field);
+			@RequestParam(value = "cliente", defaultValue = "") String cliente,
+			@RequestParam(value = "assunto", defaultValue = "") String assunto,
+			@RequestParam(value = "situacao", defaultValue = "0") Integer situacao,
+			@RequestParam(value = "dataInicial", defaultValue = "") String dataInicial,
+			@RequestParam(value = "dataFinal", defaultValue = "") String dataFinal) {
+		
+		Page<OrdemServico> list = service.findPage(page, linesPerPage, orderBy, direction,cliente,assunto,situacao,dataInicial,dataFinal);
 		Page<OrdemServicoDTO> listDto = list.map(obj -> new OrdemServicoDTO(obj));  
-	
+		
 		return ResponseEntity.ok().body(listDto);
 	}
 	

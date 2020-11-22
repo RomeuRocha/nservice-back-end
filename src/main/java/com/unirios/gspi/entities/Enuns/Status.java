@@ -2,9 +2,9 @@ package com.unirios.gspi.entities.Enuns;
 
 public enum Status {
 	
-	SCHEDULED(1, "Agendado"),
-	CONCLUDED(2, "Concluído"),
-	CANCELED(3,"Cancelado");
+	Agendado(1, "Agendado"),
+	Concluido(2, "Concluído"),
+	Cancelado(3,"Cancelado");
 	
 	private int cod;
 	private String descricao;

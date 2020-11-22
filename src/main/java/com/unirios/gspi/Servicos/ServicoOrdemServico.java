@@ -1,5 +1,9 @@
 package com.unirios.gspi.Servicos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,25 +105,73 @@ public class ServicoOrdemServico {
 	}
 	
 	
-	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field) {
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto,Integer situacao,String dataInicial,String dataFinal) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		
-		
 		repo.findByServicesItensJoin();
-		Page<OrdemServico> pages = repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
+		Page<OrdemServico> pages = null;
+		Instant dtInicial = convertInstantFromString(dataInicial);
+		Instant dtFinal = convertInstantFromString(dataFinal);
+		
+		if(situacao == 0 && dtInicial == null && dtFinal == null) {
+			Date now = new Date();
+			Instant datFinal =	now.toInstant();
+			now.setDate(1);
+			Instant inicial = now.toInstant();
+			
+			//filtro padrão (apenas por assunto e/ou cliente)
+			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),inicial, datFinal,pageRequest);
+		}else if(situacao == 0 && dtInicial == null && dtFinal != null) {
+			//filtro padrão + datafinal
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
+		}else if(situacao == 0 && dtFinal == null && dtInicial != null){
+			//filtro padrão + dataInicial 
+			pages = repo.findOSByClienteAndAssuntoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,new Date().toInstant(),pageRequest);
+		}else if(situacao == 0 && dtInicial != null && dtFinal != null) {
+			//filtro padrão + dataInicial + dataFinal
+			pages = repo.findOSByClienteAndAssuntoAndDataInicialAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,dtFinal,pageRequest);
+		}else if(situacao != 0 && dtFinal == null && dtInicial != null ) {
+			//filtro padrão  + situação + dataInicial
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,new Date().toInstant(),pageRequest);
+		}else if(situacao != 0 && dtFinal != null && dtInicial == null ) {
+			//filtro padrão + situação + dataFinal
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtFinal,pageRequest);
 
+		}else if(situacao != 0 && dtFinal != null && dtInicial != null) {
+			//filtro padrão + situação + dataInicial + dataFinal
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,dtFinal,pageRequest);
+		}
+		else {
+			pages = repo.findOSByClienteAndAssuntoAndSituacao(cliente.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
+		}
+		
 		return pages;
 	}
 
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
-		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
+		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment().toInstant(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
 		for(ServicoDTO servDTO : dto.getServicos()) {
 			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());
 			os.getServicesItens().add(new ItemService(s, os, s.getValue()));
 		}
 		return os;
+	}
+	
+	public Instant convertInstantFromString(String value) {
+        Instant instant = null;
+        if(value.equals("")) {
+        	return null;
+        }
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date dte = sdf.parse(value);
+			instant = dte.toInstant();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return instant;
 	}
 
 }
