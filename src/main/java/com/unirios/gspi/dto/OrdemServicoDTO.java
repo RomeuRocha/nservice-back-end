@@ -53,7 +53,7 @@ public class OrdemServicoDTO implements Serializable{
 		this.id = os.getId();
 		this.funcionario = os.getCollaborator();
 		this.cliente = os.getCliente();
-		this.assunto = os.getSubject();
+		this.assunto = os.getAssunto();
 		this.saveMoment = Date.from(os.getSaveMoment());
 		this.dateSchedule = os.getDateSchedule();
 		this.attendance = os.getAttendance();

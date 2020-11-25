@@ -63,6 +63,7 @@ public class ServicoOrdemServico {
 	}
 
 	public OrdemServico update(OrdemServico obj) {
+		
 		OrdemServico newObj = findById(obj.getId());
 
 		for (ItemService is : newObj.getServicesItens()) {
@@ -100,7 +101,7 @@ public class ServicoOrdemServico {
 		newObj.setServicesItens(obj.getServicesItens());
 		newObj.setSaveMoment(obj.getSaveMoment());
 		newObj.setSituation(obj.getSituation());
-		newObj.setSubject(obj.getSubject());
+		newObj.setAssunto(obj.getAssunto());
 		newObj.setCliente(obj.getCliente());
 	}
 	

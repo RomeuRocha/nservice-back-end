@@ -58,7 +58,7 @@ public class OrdemServico implements Serializable{
 	@Getter @Setter
 	@ManyToOne
 	@JoinColumn(name = "assunto_id")
-	private Assunto subject;
+	private Assunto assunto;
 	
 	@Getter @Setter
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
@@ -80,7 +80,7 @@ public class OrdemServico implements Serializable{
 		this.id = id;
 		this.collaborator = collaborator;
 		this.cliente = cliente;
-		this.subject = subject;
+		this.assunto = subject;
 		this.saveMoment = saveMoment;
 		this.dateSchedule = dateSchedule;
 		this.attendance = attendance;

@@ -1,6 +1,8 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoAssunto;
+import com.unirios.gspi.dto.AdesaoDTO;
 import com.unirios.gspi.dto.AssuntoDTO;
+import com.unirios.gspi.entidades.Adesao;
 import com.unirios.gspi.entidades.Assunto;
+import com.unirios.gspi.entidades.Servico;
 
 @RestController
 @RequestMapping(value="/assunto")
@@ -84,6 +89,17 @@ public class ControladorAssunto {
 		return ResponseEntity.ok().body(vars);
 	}
 	
+	@RequestMapping(value="/many/{ids}", method=RequestMethod.GET)
+	public ResponseEntity<List<AssuntoDTO>> findMany(@PathVariable Long[] ids) {
+		List<AssuntoDTO> list = new ArrayList<AssuntoDTO>();
+		
+		for(Long id: ids) {
+			Assunto assunto = service.findById(id);
+			list.add(new AssuntoDTO(assunto));
+		}
+		
+		return ResponseEntity.ok().body(list);
+	}
 	
 	
 	
