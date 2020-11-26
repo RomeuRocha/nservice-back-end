@@ -3,7 +3,6 @@ package com.unirios.gspi.dto;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +35,7 @@ public class OrdemServicoDTO implements Serializable{
 	private Assunto assunto;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
-	private Date saveMoment;//momento salvo;//deverá ser feito em trigger
+	private Instant saveMoment;//momento salvo;//deverá ser feito em trigger
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant dateSchedule;//data e hora do agendamento
@@ -54,7 +53,7 @@ public class OrdemServicoDTO implements Serializable{
 		this.funcionario = os.getCollaborator();
 		this.cliente = os.getCliente();
 		this.assunto = os.getAssunto();
-		this.saveMoment = Date.from(os.getSaveMoment());
+		this.saveMoment = os.getSaveMoment();
 		this.dateSchedule = os.getDateSchedule();
 		this.attendance = os.getAttendance();
 		this.situation = os.getSituation();

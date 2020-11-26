@@ -1,10 +1,10 @@
 package com.unirios.gspi.entities.Enuns;
 
 public enum Status {
-	
-	Agendado(1, "Agendado"),
-	Concluido(2, "Concluído"),
-	Cancelado(3,"Cancelado");
+	ANALISE(1,"Analise"),
+	AGENDADO(2, "Agendado"),
+	CONCLUIDO(3, "Concluído"),
+	CANCELADO(4,"Cancelado");
 	
 	private int cod;
 	private String descricao;

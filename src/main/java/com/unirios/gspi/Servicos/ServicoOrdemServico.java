@@ -150,7 +150,7 @@ public class ServicoOrdemServico {
 	}
 
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
-		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment().toInstant(),
+		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
 		for(ServicoDTO servDTO : dto.getServicos()) {
 			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());
