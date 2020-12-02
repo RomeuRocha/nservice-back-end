@@ -1,6 +1,8 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoServico;
+import com.unirios.gspi.dto.FuncionarioDTO;
 import com.unirios.gspi.dto.ServicoDTO;
+import com.unirios.gspi.entidades.Funcionario;
 import com.unirios.gspi.entidades.Servico;
 
 @RestController
@@ -83,6 +87,18 @@ public class ControladorServico {
 		}
 		Long[] vars = ids;
 		return ResponseEntity.ok().body(vars);
+	}
+	
+	@RequestMapping(value="/many/{ids}", method=RequestMethod.GET)
+	public ResponseEntity<List<ServicoDTO>> findMany(@PathVariable Long[] ids) {
+		List<ServicoDTO> list = new ArrayList<ServicoDTO>();
+		
+		for(Long id: ids) {
+			Servico servico = service.findById(id);
+			list.add(new ServicoDTO(servico));
+		}
+		
+		return ResponseEntity.ok().body(list);
 	}
 	
 	

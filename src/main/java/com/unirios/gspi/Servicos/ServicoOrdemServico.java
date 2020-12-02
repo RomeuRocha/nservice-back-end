@@ -2,6 +2,7 @@ package com.unirios.gspi.Servicos;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -63,6 +64,7 @@ public class ServicoOrdemServico {
 	}
 
 	public OrdemServico update(OrdemServico obj) {
+		
 		OrdemServico newObj = findById(obj.getId());
 
 		for (ItemService is : newObj.getServicesItens()) {
@@ -88,8 +90,9 @@ public class ServicoOrdemServico {
 			repo.deleteById(id);
 			return obj;
 		} catch (DataIntegrityViolationException e) {
+			System.out.println(e.getMessage());
 			throw new DataIntegrityException(
-					"Não é possível excluir um funcionário que possui relação com Ordem de serviço");
+					"Não é possível excluir uma ordem de serviço que possui relação com outras entidades");
 		}
 	}
 
@@ -100,7 +103,7 @@ public class ServicoOrdemServico {
 		newObj.setServicesItens(obj.getServicesItens());
 		newObj.setSaveMoment(obj.getSaveMoment());
 		newObj.setSituation(obj.getSituation());
-		newObj.setSubject(obj.getSubject());
+		newObj.setAssunto(obj.getAssunto());
 		newObj.setCliente(obj.getCliente());
 	}
 	
@@ -114,13 +117,25 @@ public class ServicoOrdemServico {
 		Instant dtFinal = convertInstantFromString(dataFinal);
 		
 		if(situacao == 0 && dtInicial == null && dtFinal == null) {
+			
+			Instant datFinal =	Instant.now();
+			
 			Date now = new Date();
-			Instant datFinal =	now.toInstant();
 			now.setDate(1);
+			now.setHours(-3);
+			now.setMinutes(0);
+			now.setSeconds(0);
+			
+			
 			Instant inicial = now.toInstant();
+			
+			Instant agora = Instant.now();
 			
 			//filtro padrão (apenas por assunto e/ou cliente)
 			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),inicial, datFinal,pageRequest);
+			System.out.println("final = "+datFinal);
+			System.out.println("inicial = "+inicial);
+			System.out.println("agora = "+agora);
 		}else if(situacao == 0 && dtInicial == null && dtFinal != null) {
 			//filtro padrão + datafinal
 			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
@@ -147,9 +162,19 @@ public class ServicoOrdemServico {
 		
 		return pages;
 	}
+	
+	public Page<OrdemServico> findPageAgenda(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente) {
+		
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		repo.findByServicesItensJoin();
+		Page<OrdemServico> pages = null;
+		pages = repo.findAll(pageRequest);
+		
+		return pages;
+	}
 
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
-		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment().toInstant(),
+		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
 		for(ServicoDTO servDTO : dto.getServicos()) {
 			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());

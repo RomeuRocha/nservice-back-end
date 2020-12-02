@@ -1,6 +1,7 @@
 package com.unirios.gspi.controladores;
 
 import java.net.URI;
+import java.time.Instant;
 
 import javax.validation.Valid;
 
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.unirios.gspi.Servicos.ServicoOrdemServico;
 import com.unirios.gspi.dto.OrdemServicoDTO;
 import com.unirios.gspi.entidades.OrdemServico;
+import com.unirios.gspi.entities.Enuns.Status;
 
 @RestController
 @RequestMapping(value="/ordemservico")
@@ -26,7 +28,7 @@ public class ControladorOrdemServico {
 	@Autowired
 	private ServicoOrdemServico service;
 	
-
+	
 	@RequestMapping( method = RequestMethod.GET)
 	public ResponseEntity<Page<OrdemServicoDTO>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -54,7 +56,10 @@ public class ControladorOrdemServico {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<OrdemServicoDTO> insert(@Valid @RequestBody OrdemServicoDTO objDto) {
+		objDto.setSaveMoment(Instant.now());
+		objDto.setSituation(Status.ANALISE);
 		OrdemServico obj = service.fromDTO(objDto);
+		
 		obj = service.insert(obj);
 		OrdemServicoDTO serviDTO = new OrdemServicoDTO(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

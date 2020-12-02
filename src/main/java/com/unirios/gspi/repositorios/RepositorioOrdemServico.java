@@ -1,7 +1,6 @@
 package com.unirios.gspi.repositorios;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -20,7 +19,7 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " JOIN FETCH it.service"
 			+ " JOIN FETCH obj.cliente"
 			+ " JOIN FETCH obj.collaborator"
-			+ " JOIN FETCH obj.subject"
+			+ " JOIN FETCH obj.assunto"
 			+ " WHERE obj IN :ordens")
 	List<OrdemServico> findByServicesItens(List<OrdemServico> ordens);
 	
@@ -29,11 +28,11 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " JOIN FETCH it.service"
 			+ " JOIN FETCH obj.cliente"
 			+ " JOIN FETCH obj.collaborator"
-			+ " JOIN FETCH obj.subject")
+			+ " JOIN FETCH obj.assunto")
 	List<OrdemServico> findByServicesItensJoin();
 	
 	@Query("FROM OrdemServico obj WHERE LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.saveMoment >= :dataInicial"
 			+ " AND obj.saveMoment <= :dataFinal")
 			
@@ -41,20 +40,20 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.situation = :situacao")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacao(String cliente,String assunto,Integer situacao, Pageable  pageable );
 	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.saveMoment >= :dataInicial"
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndDataInicial(String cliente,String assunto,Instant dataInicial,Instant dataFinal, Pageable  pageable );
 	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.situation = :situacao"
 			+ " AND obj.saveMoment >= :dataInicial"
 			+ " AND obj.saveMoment <= :dataFinal")
@@ -62,27 +61,27 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.situation = :situacao"
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataFinal(String cliente,String assunto,Integer situacao,Instant dataFinal, Pageable  pageable );
 	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%" 
+			+ " AND LOWER(obj.assunto.description) like %:assunto%" 
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataFinal(String cliente,String assunto,Instant dataFinal, Pageable  pageable );
 
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.saveMoment >= :dataInicial"
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndDataInicialAndDataFinal(String cliente,String assunto,Instant dataInicial,Instant dataFinal, Pageable  pageable );
 	
 	@Query("FROM OrdemServico obj WHERE "
 			+ " LOWER(obj.cliente.nome) like %:cliente%"
-			+ " AND LOWER(obj.subject.description) like %:assunto%"
+			+ " AND LOWER(obj.assunto.description) like %:assunto%"
 			+ " AND obj.situation = :situacao"
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataInicialAndDataFinal(String cliente,String assunto,Integer situacao,Instant dataFinal, Pageable  pageable );

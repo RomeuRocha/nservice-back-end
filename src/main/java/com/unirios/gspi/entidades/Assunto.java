@@ -38,7 +38,7 @@ public class Assunto implements Serializable{
 	private String description;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "subject")
+	@OneToMany(mappedBy = "assunto")
 	private List<OrdemServico> orderServices = new ArrayList<OrdemServico>();
 
 	public Assunto(Long id, String description) {

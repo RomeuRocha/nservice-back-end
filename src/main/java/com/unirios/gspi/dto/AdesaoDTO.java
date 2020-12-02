@@ -1,12 +1,8 @@
 package com.unirios.gspi.dto;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.unirios.gspi.entidades.Adesao;
 import com.unirios.gspi.entidades.Cancelamento;
 import com.unirios.gspi.entidades.Cliente;
