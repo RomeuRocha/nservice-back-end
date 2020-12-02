@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.unirios.gspi.entidades.Adesao;
-import com.unirios.gspi.entidades.Assunto;
-import com.unirios.gspi.entidades.Cancelamento;
 
 @Repository
 public interface RepositorioAdesao extends JpaRepository<Adesao, Long>{

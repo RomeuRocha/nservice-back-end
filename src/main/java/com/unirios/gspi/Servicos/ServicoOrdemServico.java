@@ -2,6 +2,7 @@ package com.unirios.gspi.Servicos;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -89,8 +90,9 @@ public class ServicoOrdemServico {
 			repo.deleteById(id);
 			return obj;
 		} catch (DataIntegrityViolationException e) {
+			System.out.println(e.getMessage());
 			throw new DataIntegrityException(
-					"Não é possível excluir um funcionário que possui relação com Ordem de serviço");
+					"Não é possível excluir uma ordem de serviço que possui relação com outras entidades");
 		}
 	}
 
@@ -115,13 +117,25 @@ public class ServicoOrdemServico {
 		Instant dtFinal = convertInstantFromString(dataFinal);
 		
 		if(situacao == 0 && dtInicial == null && dtFinal == null) {
+			
+			Instant datFinal =	Instant.now();
+			
 			Date now = new Date();
-			Instant datFinal =	now.toInstant();
 			now.setDate(1);
+			now.setHours(-3);
+			now.setMinutes(0);
+			now.setSeconds(0);
+			
+			
 			Instant inicial = now.toInstant();
+			
+			Instant agora = Instant.now();
 			
 			//filtro padrão (apenas por assunto e/ou cliente)
 			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),inicial, datFinal,pageRequest);
+			System.out.println("final = "+datFinal);
+			System.out.println("inicial = "+inicial);
+			System.out.println("agora = "+agora);
 		}else if(situacao == 0 && dtInicial == null && dtFinal != null) {
 			//filtro padrão + datafinal
 			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
@@ -145,6 +159,16 @@ public class ServicoOrdemServico {
 		else {
 			pages = repo.findOSByClienteAndAssuntoAndSituacao(cliente.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
 		}
+		
+		return pages;
+	}
+	
+	public Page<OrdemServico> findPageAgenda(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente) {
+		
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		repo.findByServicesItensJoin();
+		Page<OrdemServico> pages = null;
+		pages = repo.findAll(pageRequest);
 		
 		return pages;
 	}
