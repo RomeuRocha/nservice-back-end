@@ -16,6 +16,7 @@ public interface RepositorioAdesao extends JpaRepository<Adesao, Long>{
 	@Query("FROM Adesao obj WHERE LOWER(obj.cliente.nome) like %:field%")
 	public Page<Adesao> listarServicosPaginados(String field, Pageable  pageable );
 
+	//@Query("SELECT COUNT(obj.id) FROM Adesao obj WHERE obj.cancelamento.id is NULL")
 	
 }
 

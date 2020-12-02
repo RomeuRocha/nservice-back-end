@@ -87,4 +87,5 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 			+ " AND obj.saveMoment <= :dataFinal")
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataInicialAndDataFinal(String cliente,String assunto,Integer situacao,Instant dataFinal, Pageable  pageable );
 	
+	//@Query("SELECT COUNT(obj.id) FROM OrdemServico obj WHERE obj.situation = 1")
 }

@@ -173,5 +173,9 @@ public class ServicoOrdemServico {
 		
 		return instant;
 	}
+	public Integer osAbertas() {
+		
+		return null;
+	}
 
 }
