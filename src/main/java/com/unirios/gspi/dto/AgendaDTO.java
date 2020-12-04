@@ -29,7 +29,7 @@ public class AgendaDTO {
 	public AgendaDTO(OrdemServico os) {
 		id = os.getId();
 		startDate = os.getDateSchedule();
-		endDate = os.getDateSchedule();
+		endDate = os.getDateSchedule().plusSeconds(600L);
 		title = os.getAssunto().getDescription();
 		type = os.getSituation().getDescricao();
 	}
