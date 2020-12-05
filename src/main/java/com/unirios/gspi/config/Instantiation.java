@@ -89,10 +89,10 @@ public class Instantiation implements CommandLineRunner{
 		
 		responsibleRepository.saveAll(Arrays.asList(resp1,resp2,resp3));
 		
-		OrdemServico os1 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.AGENDADO);
+		OrdemServico os1 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-10-14T19:53:07Z"), null, Status.AGENDADO);
 		OrdemServico os2 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELADO);
-		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.ASSUMIDO);
+		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-17T19:53:07Z"), null, Status.CANCELADO);
+		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-20T19:53:07Z"), null, Status.ASSUMIDO);
 		
 		
 		ItemService osItem1 = new ItemService(s1, os1, 0f);
