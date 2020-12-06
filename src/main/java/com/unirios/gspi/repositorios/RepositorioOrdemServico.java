@@ -87,4 +87,8 @@ public interface RepositorioOrdemServico extends JpaRepository<OrdemServico, Lon
 	public Page<OrdemServico> findOSByClienteAndAssuntoAndSituacaoAndDataInicialAndDataFinal(String cliente,String assunto,Integer situacao,Instant dataFinal, Pageable  pageable );
 	
 	//@Query("SELECT COUNT(obj.id) FROM OrdemServico obj WHERE obj.situation = 1")
+	//@Query("SELECT COUNT(os.SITUATION), MONTH(os.DATE_SCHEDULE) FROM ORDEM_DE_SERVICO os WHERE os.SITUATION = 4 Group By MONTH(os.DATE_SCHEDULE)")
+	//@Query("FROM OrdemServico os WHERE YEAR(os.saveMoment) = :ano AND os.situation = 4 Order by MONTH(os.saveMoment")
+	@Query("FROM OrdemServico os WHERE os.situation = :valor Order by MONTH(os.saveMoment)")
+	public List<OrdemServico> osPorMes(Integer valor);
 }

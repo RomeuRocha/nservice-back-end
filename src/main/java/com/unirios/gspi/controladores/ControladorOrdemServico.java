@@ -2,6 +2,8 @@ package com.unirios.gspi.controladores;
 
 import java.net.URI;
 import java.time.Instant;
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoOrdemServico;
+import com.unirios.gspi.dto.Grafico1DTO;
 import com.unirios.gspi.dto.OrdemServicoDTO;
 import com.unirios.gspi.entidades.OrdemServico;
 import com.unirios.gspi.entities.Enuns.Status;
@@ -94,6 +97,22 @@ public class ControladorOrdemServico {
 		}
 		Long[] vars = ids;
 		return ResponseEntity.ok().body(vars);
+	}
+	
+	@RequestMapping(value="/grafico1", method=RequestMethod.GET)
+	public ResponseEntity<List<Grafico1DTO>> findGrafico() {
+		List<Grafico1DTO> g1 = service.findGrafico1(4);
+		
+		return ResponseEntity.ok().body(g1);
+		
+	}
+	
+	@RequestMapping(value="/abertas", method=RequestMethod.GET)
+	public ResponseEntity<Integer> findOsAbertas() {
+		List<OrdemServico> g1 = service.findAbertas(2);
+		Integer total = g1.size();
+		return ResponseEntity.ok().body(total);
+		
 	}
 	
 	

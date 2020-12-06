@@ -99,5 +99,13 @@ public class ControladorCliente {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@RequestMapping(value="/totalClientes", method=RequestMethod.GET)
+	public ResponseEntity<Long> findTotalCliente() {
+		List<Cliente> list = service.findAll();
+		Long total = (long) list.size(); 
+				
+		return ResponseEntity.ok().body(total);
+	}
+	
 
 }

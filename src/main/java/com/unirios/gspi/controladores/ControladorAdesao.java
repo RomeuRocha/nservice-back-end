@@ -19,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoAdesao;
 import com.unirios.gspi.dto.AdesaoDTO;
+import com.unirios.gspi.dto.Grafico1DTO;
+import com.unirios.gspi.dto.Grafico2DTO;
 import com.unirios.gspi.entidades.Adesao;
 
 @RestController
@@ -98,7 +100,18 @@ public class ControladorAdesao {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@RequestMapping(value="/ativas", method=RequestMethod.GET)
+	public ResponseEntity<Long> findActive() {
+		Long s = service.findActive();
+		return ResponseEntity.ok().body(s);
+	}
 	
-	
+	@RequestMapping(value="/grafico2", method=RequestMethod.GET)
+	public ResponseEntity<List<Grafico2DTO>> findGrafico() {
+		List<Grafico2DTO> g1 = service.findGrafico2();
+		
+		return ResponseEntity.ok().body(g1);
+		
+	}
 
 }

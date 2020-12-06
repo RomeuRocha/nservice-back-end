@@ -4,9 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.unirios.gspi.dto.Grafico1DTO;
 import com.unirios.gspi.dto.OrdemServicoDTO;
 import com.unirios.gspi.dto.ServicoDTO;
 import com.unirios.gspi.entidades.ItemService;
@@ -201,6 +205,86 @@ public class ServicoOrdemServico {
 	public Integer osAbertas() {
 		
 		return null;
+	}
+	
+	public List<Grafico1DTO> findGrafico1(Integer valor){
+		List<OrdemServico> os = repo.osPorMes(valor);
+		List<Grafico1DTO> list = new ArrayList<Grafico1DTO>();
+		
+		OrdemServico ordem = os.get(0);
+		int mes = Date.from(ordem.getSaveMoment()).getMonth();
+		
+		for(int x=0; x <= 12; x++) {
+		
+			Grafico1DTO g1 = new Grafico1DTO(0,x+1, null);		
+			for(OrdemServico oi: os) {
+				int mesInt = Date.from(oi.getSaveMoment()).getMonth();
+				
+				if(x == mesInt) {
+					g1.setLineValue(g1.getLineValue()+1);
+					
+				}
+			
+			}
+			switch (g1.getArgument()) {
+			case 1:
+				g1.setMes("JAN");
+				break;
+			case 2:
+				g1.setMes("FEV");
+				break;
+				
+			case 3:
+				g1.setMes("MAR");
+				break;
+
+			case 4:
+				g1.setMes("ABR");
+				break;
+
+			case 5:
+				g1.setMes("MAI");
+				break;
+
+			case 6:
+				g1.setMes("JUN");
+				break;
+
+			case 7:
+				g1.setMes("JUL");
+				break;
+			case 8:
+				g1.setMes("AGO");
+				break;
+
+			case 9:
+				g1.setMes("SET");
+				break;
+
+			case 10:
+				g1.setMes("OUT");
+				break;
+
+			case 11:
+				g1.setMes("NOV");
+				break;
+
+			case 12:
+				g1.setMes("DEZ");
+				break;
+
+
+			default:
+				break;
+			}
+			list.add(g1);
+		
+		}
+		
+		return list;
+	}
+	public List<OrdemServico> findAbertas(Integer valor){
+		return repo.osPorMes(valor);
 	}
 
 }
