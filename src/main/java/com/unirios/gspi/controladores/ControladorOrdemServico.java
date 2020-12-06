@@ -103,7 +103,7 @@ public class ControladorOrdemServico {
 	
 	@RequestMapping(value="/grafico1", method=RequestMethod.GET)
 	public ResponseEntity<List<Grafico1DTO>> findGrafico() {
-		List<Grafico1DTO> g1 = service.findGrafico1(4);
+		List<Grafico1DTO> g1 = service.findGrafico1(3);
 		
 		return ResponseEntity.ok().body(g1);
 		

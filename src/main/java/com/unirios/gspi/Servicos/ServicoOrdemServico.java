@@ -218,13 +218,13 @@ public class ServicoOrdemServico {
 		List<Grafico1DTO> list = new ArrayList<Grafico1DTO>();
 		
 		OrdemServico ordem = os.get(0);
-		int mes = Date.from(ordem.getSaveMoment()).getMonth();
+		int mes = Date.from(ordem.getDateSchedule()).getMonth();
 		
 		for(int x=0; x <= 12; x++) {
 		
 			Grafico1DTO g1 = new Grafico1DTO(0,x+1, null);		
 			for(OrdemServico oi: os) {
-				int mesInt = Date.from(oi.getSaveMoment()).getMonth();
+				int mesInt = Date.from(oi.getDateSchedule()).getMonth();
 				
 				if(x == mesInt) {
 					g1.setLineValue(g1.getLineValue()+1);
