@@ -1,8 +1,9 @@
 package com.unirios.gspi.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,8 +43,8 @@ public class Servico implements Serializable{
 	
 	@JsonIgnore
 	@Getter @Setter
-	@OneToMany(mappedBy = "id")
-	private Set<ItemService> servicesItens = new HashSet<ItemService>();
+	@OneToMany(mappedBy = "service")
+	private List<ItemService> servicesItens = new ArrayList<ItemService>();
 
 	public Servico(Long id, String description, Float value) {
 		super();

@@ -2,6 +2,7 @@ package com.unirios.gspi.config;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -92,7 +93,11 @@ public class Instantiation implements CommandLineRunner{
 		OrdemServico os1 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.AGENDADO);
 		OrdemServico os2 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CONCLUIDO);
 		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.CANCELADO);
-		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.ASSUMIDO);
+		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T19:53:07Z"), null, Status.ANALISE);
+		
+		Instant moment = Instant.parse("2020-01-13T00:10:07Z");
+		Date data = Date.from(moment);
+		
 		
 		
 		ItemService osItem1 = new ItemService(s1, os1, 0f);

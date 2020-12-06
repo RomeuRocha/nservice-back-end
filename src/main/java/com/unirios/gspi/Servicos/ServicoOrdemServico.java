@@ -37,6 +37,9 @@ public class ServicoOrdemServico {
 
 	@Autowired
 	private RepositorioServico serviceRepository;
+	
+	@Autowired
+	private ServicoServico serviceServico;
 
 	public List<OrdemServico> findAll() {
 		return repo.findAll();
@@ -73,10 +76,11 @@ public class ServicoOrdemServico {
 		updateData(newObj, obj);
 
 		for (ItemService is : newObj.getServicesItens()) {
-
+			
 			is.setValue(serviceRepository.findById(is.getService().getId()).get().getValue());
-			is.setOrderService(newObj);
-			is.setService(is.getService());
+			//is.setOrderService(newObj);
+			is.setService(serviceServico.findById(is.getService().getId()));
+		
 		}
 		itemRepo.saveAll(newObj.getServicesItens());// salva os novos itens
 		newObj = repo.save(newObj);
@@ -176,10 +180,12 @@ public class ServicoOrdemServico {
 	public OrdemServico fromDTO(OrdemServicoDTO dto) {
 		OrdemServico os = new OrdemServico(dto.getId(), dto.getFuncionario(),dto.getCliente(), dto.getAssunto(), dto.getSaveMoment(),
 				dto.getDateSchedule(), dto.getAttendance(), dto.getSituation());
+		
 		for(ServicoDTO servDTO : dto.getServicos()) {
-			Servico s = new Servico(servDTO.getId(), servDTO.getDescription(), servDTO.getValue());
-			os.getServicesItens().add(new ItemService(s, os, s.getValue()));
+			Servico s = serviceServico.findById(servDTO.getId());
+			os.AddItemService(new ItemService(s, os, s.getValue()));
 		}
+		
 		return os;
 	}
 	
