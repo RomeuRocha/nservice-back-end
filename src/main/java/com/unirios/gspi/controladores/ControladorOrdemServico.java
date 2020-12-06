@@ -62,7 +62,6 @@ public class ControladorOrdemServico {
 		objDto.setSaveMoment(Instant.now());
 		objDto.setSituation(Status.ANALISE);
 		OrdemServico obj = service.fromDTO(objDto);
-		
 		obj = service.insert(obj);
 		OrdemServicoDTO serviDTO = new OrdemServicoDTO(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -72,8 +71,11 @@ public class ControladorOrdemServico {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<OrdemServicoDTO> update(@Valid @RequestBody OrdemServicoDTO objDto, @PathVariable Long id) {
+		System.out.println("===========================");
+		System.out.println(objDto.getSituation());
 		OrdemServico obj = service.fromDTO(objDto);
 		obj.setId(id);
+		
 		obj = service.update(obj);
 		OrdemServicoDTO servDTO = new OrdemServicoDTO(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

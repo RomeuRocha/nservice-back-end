@@ -2,6 +2,7 @@ package com.unirios.gspi.config;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -89,13 +90,15 @@ public class Instantiation implements CommandLineRunner{
 		
 		responsibleRepository.saveAll(Arrays.asList(resp1,resp2,resp3));
 		
+
 		OrdemServico os1 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-10-14T09:53:07Z"), null, Status.AGENDADO);
 		OrdemServico os2 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T09:53:07Z"), null, Status.CONCLUIDO);
 		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-10-17T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-20T09:53:07Z"), null, Status.ASSUMIDO);
+		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-20T09:53:07Z"), null, Status.ANALISE);
 		OrdemServico os5 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-10-05T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os6 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-10-07T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os6 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-10-07T09:53:07Z"), null, Status.CANCELADO);
 		OrdemServico os7 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-01T09:53:07Z"), null, Status.CONCLUIDO);
+
 		
 		
 		
