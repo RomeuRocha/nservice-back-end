@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoAdesao;
+import com.unirios.gspi.Servicos.ServicoEndereco;
 import com.unirios.gspi.dto.AdesaoDTO;
-import com.unirios.gspi.dto.Grafico1DTO;
 import com.unirios.gspi.dto.Grafico2DTO;
 import com.unirios.gspi.entidades.Adesao;
+import com.unirios.gspi.entidades.Endereco;
 
 @RestController
 @RequestMapping(value="/adesao")
@@ -29,6 +30,9 @@ public class ControladorAdesao {
 	
 	@Autowired
 	private ServicoAdesao service;
+	
+	@Autowired
+	private ServicoEndereco serviceEndereco;
 	
 	@RequestMapping( method = RequestMethod.GET)
 	public ResponseEntity<Page<AdesaoDTO>> findPage(
@@ -52,6 +56,7 @@ public class ControladorAdesao {
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<AdesaoDTO> insert(@Valid @RequestBody AdesaoDTO objDto) {
 		Adesao obj = service.fromDto(objDto);
+		Endereco end = serviceEndereco.insert(obj.getEndereco());
 		obj = service.insert(obj);
 		AdesaoDTO serviDTO = new AdesaoDTO(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -11,6 +11,6 @@ import com.unirios.gspi.entidades.Plano;
 @Repository
 public interface RepositorioPlano extends JpaRepository<Plano, Long>{
 
-	@Query("FROM Plano obj WHERE LOWER(obj.descricao) like %:field%")
+	@Query("FROM Plano obj WHERE LOWER(obj.nome) like %:field%")
 	public Page<Plano> listarPlanosPaginados(String field, Pageable  pageable );
 }

@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoEndereco;
-import com.unirios.gspi.dto.ClienteDTO;
 import com.unirios.gspi.dto.EnderecoDTO;
-import com.unirios.gspi.entidades.Cliente;
 import com.unirios.gspi.entidades.Endereco;
 
 @RestController

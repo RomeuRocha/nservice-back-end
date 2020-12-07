@@ -18,11 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoPlano;
-import com.unirios.gspi.Servicos.ServicoPlano;
-import com.unirios.gspi.dto.AdesaoDTO;
 import com.unirios.gspi.dto.PlanoDTO;
-import com.unirios.gspi.entidades.Adesao;
-import com.unirios.gspi.entidades.Plano;
 import com.unirios.gspi.entidades.Plano;
 
 @RestController

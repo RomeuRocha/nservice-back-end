@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoFuncionario;
-import com.unirios.gspi.dto.AssuntoDTO;
 import com.unirios.gspi.dto.FuncionarioDTO;
-import com.unirios.gspi.entidades.Assunto;
 import com.unirios.gspi.entidades.Funcionario;
 
 @RestController
