@@ -26,16 +26,10 @@ public class AdesaoDTO implements Serializable{
 	
 	private Date data;
 	
-	
-	private double valor;
-	
-
 	private Plano plano;
 	
-
 	private Cancelamento cancelamento;
 	
-
 	private Endereco endereco;
 	
 	private Cliente cliente;
@@ -43,7 +37,6 @@ public class AdesaoDTO implements Serializable{
 	public AdesaoDTO(Adesao obj) {
 		id = obj.getId();
 		data = Date.from(obj.getData());
-		valor = obj.getValor();
 		plano = obj.getPlano();
 		cancelamento = obj.getCancelamento();
 		endereco = obj.getEndereco();

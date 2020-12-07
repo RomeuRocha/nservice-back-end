@@ -32,8 +32,6 @@ public class Adesao implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant data;
 	
-	@Getter @Setter
-	private double valor;
 	
 	@Getter @Setter
 	@ManyToOne
@@ -53,12 +51,11 @@ public class Adesao implements Serializable{
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	public Adesao(Long id, Instant data, double valor, Plano plano, Cancelamento cancelamento, Endereco endereco,
+	public Adesao(Long id, Instant data, Plano plano, Cancelamento cancelamento, Endereco endereco,
 			Cliente cliente) {
 		super();
 		this.id = id;
 		this.data = data;
-		this.valor = valor;
 		this.plano = plano;
 		this.cancelamento = cancelamento;
 		this.endereco = endereco;

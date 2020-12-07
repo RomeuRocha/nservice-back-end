@@ -1,10 +1,7 @@
 package com.unirios.gspi.dto;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.NotEmpty;
-
-import com.unirios.gspi.entidades.Cidade;
 import com.unirios.gspi.entidades.Endereco;
 
 import lombok.Getter;
@@ -27,27 +24,26 @@ public class EnderecoDTO implements Serializable{
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String rua;
 	
-	
 	private String numero;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String bairro;
-
 	
 	private String cep;
 	
+	private String cidade;
 	
-	private Cidade cidade;
+	private String uf;
 
 
 	public EnderecoDTO(Endereco obj) {
-		super();
 		this.id = obj.getId();
 		this.rua = obj.getRua();
 		this.numero = obj.getNumero();
 		this.bairro = obj.getBairro();
 		this.cep = obj.getCep();
 		this.cidade = obj.getCidade();
+		this.uf = obj.getUf();
 	}
 	
 	

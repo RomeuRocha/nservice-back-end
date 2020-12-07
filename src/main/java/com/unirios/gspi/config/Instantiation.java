@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Profile;
 
 import com.unirios.gspi.entidades.Adesao;
 import com.unirios.gspi.entidades.Assunto;
-import com.unirios.gspi.entidades.Cidade;
 import com.unirios.gspi.entidades.Cliente;
 import com.unirios.gspi.entidades.Endereco;
 import com.unirios.gspi.entidades.Funcionario;
@@ -24,7 +23,6 @@ import com.unirios.gspi.entities.Enuns.Estado;
 import com.unirios.gspi.entities.Enuns.Status;
 import com.unirios.gspi.repositorios.RepositorioAdesao;
 import com.unirios.gspi.repositorios.RepositorioAssunto;
-import com.unirios.gspi.repositorios.RepositorioCidade;
 import com.unirios.gspi.repositorios.RepositorioCliente;
 import com.unirios.gspi.repositorios.RepositorioEndereco;
 import com.unirios.gspi.repositorios.RepositorioFuncionario;
@@ -61,8 +59,6 @@ public class Instantiation implements CommandLineRunner{
 	@Autowired
 	private RepositorioEndereco enderecoRepository;
 	
-	@Autowired
-	private RepositorioCidade cidadeRepository;
 	
 	@Autowired
 	private RepositorioAdesao adesaoRepository;
@@ -140,22 +136,20 @@ public class Instantiation implements CommandLineRunner{
 		
 		planorepository.saveAll(Arrays.asList(p1,p2,p3,p4));
 		
-		Cidade ci1 = new Cidade(null, "Delmiro Gouveia", Estado.AL);
 		
-		cidadeRepository.save(ci1);
 		
-		Endereco e1 = new Endereco(null, "rua a", "45", "Campo grande", "57480-000", ci1);
-		Endereco e2 = new Endereco(null, "rua b", "15", "Centro", "57480-000", ci1);
-		Endereco e3 = new Endereco(null, "rua c", "225", "Campo grande", "57480-000", ci1);
-		Endereco e4 = new Endereco(null, "rua d", "40", "Eldorado", "57480-000", ci1);
-		Endereco e5 = new Endereco(null, "rua e", "145", "Campo grande", "57480-000", ci1);
+		Endereco e1 = new Endereco(null, "rua a", "45", "Campo grande", "57480-000", "Delmiro Gouveia","AL");
+		Endereco e2 = new Endereco(null, "rua b", "15", "Centro", "57480-000",  "Delmiro Gouveia","AL");
+		Endereco e3 = new Endereco(null, "rua c", "225", "Campo grande", "57480-000",  "Delmiro Gouveia","AL");
+		Endereco e4 = new Endereco(null, "rua d", "40", "Eldorado", "57480-000",  "Delmiro Gouveia","AL");
+		Endereco e5 = new Endereco(null, "rua e", "145", "Campo grande", "57480-000",  "Delmiro Gouveia","AL");
 		
 		enderecoRepository.saveAll(Arrays.asList(e1,e2,e3,e4,e5));
 		
-		Adesao a1 = new Adesao(null,Instant.parse("2020-10-13T19:53:07Z"), 75f, p1, null, e2, c1);
-		Adesao a2 = new Adesao(null,Instant.parse("2020-11-13T19:53:07Z"), 75f, p2, null, e1, c3);
-		Adesao a3 = new Adesao(null,Instant.parse("2020-12-13T19:53:07Z"), 75f, p2, null, e3, c4);
-		Adesao a4 = new Adesao(null,Instant.parse("2020-10-13T19:53:07Z"), 75f, p1, null, e5, c2);
+		Adesao a1 = new Adesao(null,Instant.parse("2020-10-13T19:53:07Z"), p1, null, e2, c1);
+		Adesao a2 = new Adesao(null,Instant.parse("2020-11-13T19:53:07Z"), p2, null, e1, c3);
+		Adesao a3 = new Adesao(null,Instant.parse("2020-12-13T19:53:07Z"), p2, null, e3, c4);
+		Adesao a4 = new Adesao(null,Instant.parse("2020-10-13T19:53:07Z"), p1, null, e5, c2);
 		
 		adesaoRepository.saveAll(Arrays.asList(a1,a2,a3,a4));
 	}
