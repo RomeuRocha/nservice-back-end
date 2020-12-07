@@ -90,11 +90,18 @@ public class Instantiation implements CommandLineRunner{
 		OrdemServico os1 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-10-14T09:53:07Z"), null, Status.AGENDADO);
 		OrdemServico os2 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T09:53:07Z"), null, Status.CONCLUIDO);
 		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-10-17T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-20T09:53:07Z"), null, Status.ANALISE);
+		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-20T09:53:07Z"), null, Status.AGENDADO);
 		OrdemServico os5 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-10-05T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os6 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-10-07T09:53:07Z"), null, Status.CANCELADO);
+		OrdemServico os6 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-12-08T09:53:07Z"), null, Status.AGENDADO);
 		OrdemServico os7 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-01T09:53:07Z"), null, Status.CONCLUIDO);
-		
+		OrdemServico os8 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-11-14T09:53:07Z"), null, Status.AGENDADO);
+		OrdemServico os9 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-11-14T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os10 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-12-02T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os11 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-12-22T09:53:07Z"), null, Status.AGENDADO);
+		OrdemServico os12 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-12-05T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os13 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-11-30T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os14 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-11-05T09:53:07Z"), null, Status.CONCLUIDO);
+
 		
 		
 		
@@ -114,11 +121,14 @@ public class Instantiation implements CommandLineRunner{
 		Cliente c1 = new Cliente(null, "José da Silva", "032323223", "jose@teste.com","786.355.400-42");
 		Cliente c2 = new Cliente(null, "Maria Ferreira", "032323223","maria@teste.com","786.355.400-42");
 		Cliente c3 = new Cliente(null, "Ana Clara", "032323223","ana@teste.com","786.355.400-42");
-		Cliente c4 = new Cliente(null, "Romeu Rocha", "032323223","romeu@teste.com","786.355.400-42");
+		Cliente c4 = new Cliente(null, "Romeu Rocha", "032323223","romeu@teste.com","699.952.050-09");
+		Cliente c5 = new Cliente(null, "Pedro da Marques", "032323223", "pedro.23@teste.com","786.355.400-42");
+		Cliente c6 = new Cliente(null, "Maria Joaquina", "032323223","maria30@teste.com","660.396.600-07");
+		Cliente c7 = new Cliente(null, "Ana Paula", "032323223","ana25@teste.com","699.952.050-09");
+		Cliente c8 = new Cliente(null, "Roberio Lima", "032323223","romeu@teste.com","786.355.400-42");
 		
 		
-		
-		clienteRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
+		clienteRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8));
 		
 		os1.setCliente(c1);
 		os2.setCliente(c2);
@@ -126,8 +136,16 @@ public class Instantiation implements CommandLineRunner{
 		os4.setCliente(c1);
 		os5.setCliente(c3);
 		os6.setCliente(c2);
-		os7.setCliente(c1);
-		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3,os4,os5,os6,os7));
+		os7.setCliente(c4);
+		os8.setCliente(c5);
+		os9.setCliente(c6);
+		os10.setCliente(c7);
+		os11.setCliente(c8);
+		os12.setCliente(c6);
+		os13.setCliente(c8);
+		os14.setCliente(c1);
+		
+		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3,os4,os5,os6,os7,os8,os9,os10,os11,os12,os13,os14));
 		
 		Plano p1 = new Plano(null, "20 MB", 50f, "Simples");
 		Plano p2 = new Plano(null, "30 MB", 70f, "Premiun");
