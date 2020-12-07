@@ -98,7 +98,7 @@ public class Instantiation implements CommandLineRunner{
 		OrdemServico os5 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-10-05T09:53:07Z"), null, Status.CONCLUIDO);
 		OrdemServico os6 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-10-07T09:53:07Z"), null, Status.CANCELADO);
 		OrdemServico os7 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-01T09:53:07Z"), null, Status.CONCLUIDO);
-
+		
 		
 		
 		
@@ -128,7 +128,10 @@ public class Instantiation implements CommandLineRunner{
 		os2.setCliente(c2);
 		os3.setCliente(c3);
 		os4.setCliente(c1);
-		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3,os4));
+		os5.setCliente(c3);
+		os6.setCliente(c2);
+		os7.setCliente(c1);
+		orderOfServiceRepository.saveAll(Arrays.asList(os1,os2,os3,os4,os5,os6,os7));
 		
 		Plano p1 = new Plano(null, "20 MB", 50f, "Simples");
 		Plano p2 = new Plano(null, "30 MB", 70f, "Premiun");
