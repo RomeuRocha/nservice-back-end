@@ -88,20 +88,20 @@ public class Instantiation implements CommandLineRunner{
 		
 
 		OrdemServico os1 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-10-14T09:53:07Z"), null, Status.AGENDADO);
-		OrdemServico os2 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-10-17T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os2 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-15T09:53:07Z"), Instant.parse("2020-10-15T09:53:07Z"), Status.CONCLUIDO);
+		OrdemServico os3 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-10-17T09:53:07Z"), Instant.parse("2020-10-17T09:53:07Z"), Status.CONCLUIDO);
 		OrdemServico os4 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-20T09:53:07Z"), null, Status.AGENDADO);
-		OrdemServico os5 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-10-05T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os5 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-10-05T09:53:07Z"), Instant.parse("2020-10-05T09:53:07Z"), Status.CONCLUIDO);
 		OrdemServico os6 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-12-08T09:53:07Z"), null, Status.AGENDADO);
-		OrdemServico os7 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-01T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os7 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-10-01T09:53:07Z"), Instant.parse("2020-10-01T09:53:07Z"), Status.CONCLUIDO);
 		OrdemServico os8 = new OrdemServico(null, null, null, sub1, Instant.parse("2020-01-13T00:10:07Z"), Instant.parse("2020-11-14T09:53:07Z"), null, Status.AGENDADO);
-		OrdemServico os9 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-11-14T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os10 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-12-02T09:53:07Z"), null, Status.CONCLUIDO);
+		OrdemServico os9 = new OrdemServico(null, resp2, null, sub2, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-11-14T09:53:07Z"), Instant.parse("2020-11-14T09:53:07Z"), Status.CONCLUIDO);
+		OrdemServico os10 = new OrdemServico(null, null, null, sub3, Instant.parse("2020-10-25T10:53:07Z"), Instant.parse("2020-12-02T09:53:07Z"), Instant.parse("2020-12-02T09:53:07Z"), Status.CONCLUIDO);
 		OrdemServico os11 = new OrdemServico(null, resp2, null, sub3, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-12-22T09:53:07Z"), null, Status.AGENDADO);
-		OrdemServico os12 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-12-05T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os13 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-11-30T09:53:07Z"), null, Status.CONCLUIDO);
-		OrdemServico os14 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-11-05T09:53:07Z"), null, Status.CONCLUIDO);
-
+		OrdemServico os12 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-11-01T10:53:07Z"), Instant.parse("2020-12-05T09:53:07Z"), Instant.parse("2020-12-05T09:53:07Z"), Status.CONCLUIDO);
+		OrdemServico os13 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-10-15T10:53:07Z"), Instant.parse("2020-11-30T09:53:07Z"), Instant.parse("2020-11-30T09:53:07Z"), Status.CONCLUIDO);
+		OrdemServico os14 = new OrdemServico(null, resp1, null, sub4, Instant.parse("2020-12-01T10:53:07Z"), Instant.parse("2020-11-05T09:53:07Z"), Instant.parse("2020-11-05T09:53:07Z"), Status.CONCLUIDO);
+		
 		
 		
 		
