@@ -37,7 +37,7 @@ public class ControladorFuncionario {
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "field", defaultValue = "") String field) {
+			@RequestParam(value = "textinput", defaultValue = "") String field) {
 		Page<Funcionario> list = service.findPage(page, linesPerPage, orderBy, direction,field);
 		Page<FuncionarioDTO> listDto = list.map(obj -> new FuncionarioDTO(obj));  
 		return ResponseEntity.ok().body(listDto);

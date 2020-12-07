@@ -116,7 +116,7 @@ public class ServicoOrdemServico {
 	}
 	
 	
-	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String cliente,String assunto,Integer situacao,String dataInicial,String dataFinal) {
+	public Page<OrdemServico> findPage(Integer page, Integer linesPerPage, String orderBy, String direction, String field,String assunto,Integer situacao,String dataInicial,String dataFinal) {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		repo.findByServicesItensJoin();
@@ -140,32 +140,32 @@ public class ServicoOrdemServico {
 			Instant agora = Instant.now();
 			
 			//filtro padrão (apenas por assunto e/ou cliente)
-			pages = repo.findOSByClienteAndAssunto(cliente.toLowerCase(),assunto.toLowerCase(),inicial, datFinal,pageRequest);
+			pages = repo.findOSByClienteAndAssunto(field.toLowerCase(),assunto.toLowerCase(),inicial, datFinal,pageRequest);
 			System.out.println("final = "+datFinal);
 			System.out.println("inicial = "+inicial);
 			System.out.println("agora = "+agora);
 		}else if(situacao == 0 && dtInicial == null && dtFinal != null) {
 			//filtro padrão + datafinal
-			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(field.toLowerCase(),assunto.toLowerCase(),dtFinal,pageRequest);
 		}else if(situacao == 0 && dtFinal == null && dtInicial != null){
 			//filtro padrão + dataInicial 
-			pages = repo.findOSByClienteAndAssuntoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,new Date().toInstant(),pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndDataInicial(field.toLowerCase(),assunto.toLowerCase(),dtInicial,new Date().toInstant(),pageRequest);
 		}else if(situacao == 0 && dtInicial != null && dtFinal != null) {
 			//filtro padrão + dataInicial + dataFinal
-			pages = repo.findOSByClienteAndAssuntoAndDataInicialAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),dtInicial,dtFinal,pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndDataInicialAndDataFinal(field.toLowerCase(),assunto.toLowerCase(),dtInicial,dtFinal,pageRequest);
 		}else if(situacao != 0 && dtFinal == null && dtInicial != null ) {
 			//filtro padrão  + situação + dataInicial
-			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,new Date().toInstant(),pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(field.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,new Date().toInstant(),pageRequest);
 		}else if(situacao != 0 && dtFinal != null && dtInicial == null ) {
 			//filtro padrão + situação + dataFinal
-			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtFinal,pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataFinal(field.toLowerCase(),assunto.toLowerCase(),situacao,dtFinal,pageRequest);
 
 		}else if(situacao != 0 && dtFinal != null && dtInicial != null) {
 			//filtro padrão + situação + dataInicial + dataFinal
-			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(cliente.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,dtFinal,pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndSituacaoAndDataInicial(field.toLowerCase(),assunto.toLowerCase(),situacao,dtInicial,dtFinal,pageRequest);
 		}
 		else {
-			pages = repo.findOSByClienteAndAssuntoAndSituacao(cliente.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
+			pages = repo.findOSByClienteAndAssuntoAndSituacao(field.toLowerCase(),assunto.toLowerCase(),situacao,pageRequest);
 		}
 		
 		return pages;

@@ -98,9 +98,7 @@ public class ServicoAdesao {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
-		//return repo.findAll(pageRequest);
-
+		return repo.listarAdesoesPaginados(field.toLowerCase(),pageRequest);
 	}
 
 	public Long findActive() {

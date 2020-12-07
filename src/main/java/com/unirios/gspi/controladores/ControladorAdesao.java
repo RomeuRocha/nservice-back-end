@@ -36,7 +36,7 @@ public class ControladorAdesao {
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "field", defaultValue = "") String field) {
+			@RequestParam(value = "textinput", defaultValue = "") String field) {
 		Page<Adesao> list = service.findPage(page, linesPerPage, orderBy, direction,field);
 		Page<AdesaoDTO> listDto = list.map(obj -> new AdesaoDTO(obj));  
 		return ResponseEntity.ok().body(listDto);

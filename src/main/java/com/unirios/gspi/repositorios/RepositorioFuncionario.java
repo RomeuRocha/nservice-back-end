@@ -12,6 +12,6 @@ import com.unirios.gspi.entidades.Funcionario;
 public interface RepositorioFuncionario extends JpaRepository<Funcionario, Long>{
 
 	@Query("FROM Funcionario obj WHERE LOWER(obj.nome) like %:field%")
-	public Page<Funcionario> listarServicosPaginados(String field, Pageable  pageable );
+	public Page<Funcionario> listarFuncionariosPaginados(String field, Pageable  pageable );
 	
 }

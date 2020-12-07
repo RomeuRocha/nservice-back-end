@@ -12,7 +12,7 @@ import com.unirios.gspi.entidades.Adesao;
 public interface RepositorioAdesao extends JpaRepository<Adesao, Long>{
 
 	@Query("FROM Adesao obj WHERE LOWER(obj.cliente.nome) like %:field%")
-	public Page<Adesao> listarServicosPaginados(String field, Pageable  pageable );
+	public Page<Adesao> listarAdesoesPaginados(String field, Pageable  pageable );
 
 	@Query("SELECT COUNT(obj.id) FROM Adesao obj WHERE obj.cancelamento.id is NULL")
 	public Long adesoesAtivas();

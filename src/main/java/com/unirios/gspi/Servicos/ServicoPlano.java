@@ -69,9 +69,7 @@ public class ServicoPlano {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		return repo.listarServicosPaginados(field.toLowerCase(),pageRequest);
-		//return repo.findAll(pageRequest);
-
+		return repo.listarPlanosPaginados(field.toLowerCase(),pageRequest);
 	}
 	
 }

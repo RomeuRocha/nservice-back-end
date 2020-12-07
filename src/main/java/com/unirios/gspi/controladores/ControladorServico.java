@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoServico;
-import com.unirios.gspi.dto.FuncionarioDTO;
 import com.unirios.gspi.dto.ServicoDTO;
-import com.unirios.gspi.entidades.Funcionario;
 import com.unirios.gspi.entidades.Servico;
 
 @RestController
@@ -37,7 +35,7 @@ public class ControladorServico {
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "field", defaultValue = "") String field) {
+			@RequestParam(value = "textinput", defaultValue = "") String field) {
 		Page<Servico> list = service.findPage(page, linesPerPage, orderBy, direction,field);
 		Page<ServicoDTO> listDto = list.map(obj -> new ServicoDTO(obj));  
 		return ResponseEntity.ok().body(listDto);

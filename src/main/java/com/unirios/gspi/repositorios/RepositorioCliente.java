@@ -12,6 +12,6 @@ import com.unirios.gspi.entidades.Cliente;
 public interface RepositorioCliente extends JpaRepository<Cliente, Long>{
 
 	@Query("FROM Cliente obj WHERE LOWER(obj.nome) like %:field%")
-	public Page<Cliente> listarServicosPaginados(String field, Pageable  pageable );
+	public Page<Cliente> listarClientesPaginados(String field, Pageable  pageable );
 	
 }

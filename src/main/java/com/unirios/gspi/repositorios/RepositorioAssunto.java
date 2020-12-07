@@ -12,7 +12,7 @@ import com.unirios.gspi.entidades.Assunto;
 public interface RepositorioAssunto extends JpaRepository<Assunto, Long>{
 
 	@Query("FROM Assunto obj WHERE LOWER(obj.description) like %:field%")
-	public Page<Assunto> listarServicosPaginados(String field, Pageable  pageable );
+	public Page<Assunto> listarAssuntosPaginados(String field, Pageable  pageable );
 	
 }
 

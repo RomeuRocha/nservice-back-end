@@ -18,11 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.unirios.gspi.Servicos.ServicoAssunto;
-import com.unirios.gspi.dto.AdesaoDTO;
 import com.unirios.gspi.dto.AssuntoDTO;
-import com.unirios.gspi.entidades.Adesao;
 import com.unirios.gspi.entidades.Assunto;
-import com.unirios.gspi.entidades.Servico;
 
 @RestController
 @RequestMapping(value="/assunto")
@@ -37,7 +34,7 @@ public class ControladorAssunto {
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "field", defaultValue = "") String field) {
+			@RequestParam(value = "textinput", defaultValue = "") String field) {
 		Page<Assunto> list = service.findPage(page, linesPerPage, orderBy, direction,field);
 		Page<AssuntoDTO> listDto = list.map(obj -> new AssuntoDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
