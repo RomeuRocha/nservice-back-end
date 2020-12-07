@@ -2,6 +2,7 @@ package com.unirios.gspi.controladores;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -33,6 +34,7 @@ public class ControladorAdesao {
 	
 	@Autowired
 	private ServicoEndereco serviceEndereco;
+
 	
 	@RequestMapping( method = RequestMethod.GET)
 	public ResponseEntity<Page<AdesaoDTO>> findPage(
@@ -55,6 +57,7 @@ public class ControladorAdesao {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<AdesaoDTO> insert(@Valid @RequestBody AdesaoDTO objDto) {
+		objDto.setData(new Date());
 		Adesao obj = service.fromDto(objDto);
 		Endereco end = serviceEndereco.insert(obj.getEndereco());
 		obj = service.insert(obj);

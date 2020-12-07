@@ -81,13 +81,12 @@ public class ServicoAdesao {
 	}
 	
 	public Adesao fromDto(AdesaoDTO subjectDTO) {
-		return new Adesao(subjectDTO.getId(), subjectDTO.getData().toInstant(), subjectDTO.getValor(), subjectDTO.getPlano(), 
+		return new Adesao(subjectDTO.getId(), subjectDTO.getData().toInstant(),subjectDTO.getPlano(), 
 				subjectDTO.getCancelamento(), subjectDTO.getEndereco(), subjectDTO.getCliente());
 	}
 	
 	private void updateData(Adesao newObj,Adesao obj) {
 		newObj.setData(obj.getData());
-		newObj.setValor(obj.getValor());
 		newObj.setPlano(obj.getPlano());
 		newObj.setCancelamento(obj.getCancelamento());
 		newObj.setEndereco(obj.getEndereco());

@@ -57,7 +57,7 @@ public class ServicoEndereco {
 	
 	public Endereco fromDto(EnderecoDTO subjectDTO) {
 		return new Endereco(subjectDTO.getId(), subjectDTO.getRua(), subjectDTO.getNumero(), 
-				subjectDTO.getBairro(),subjectDTO.getCep(),subjectDTO.getCidade());
+				subjectDTO.getBairro(),subjectDTO.getCep(),subjectDTO.getCidade(),subjectDTO.getUf());
 	}
 	
 	private void updateData(Endereco newObj, Endereco obj) {
